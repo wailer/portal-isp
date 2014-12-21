@@ -1,0 +1,31 @@
+@CHARSET "ISO-8859-1";
+
+.taula {
+	background: grey;
+	border:  1;
+	padding: 10px;
+}
+
+.errorFormulari {
+	font-size: small;
+	color: red;
+	margin-left: 10px;
+}
+
+.taulaLogin {
+	background: grey;
+	border: 1;
+	padding: 10px;
+}
+
+.error {
+	color: red;
+}
+
+.valid {
+	color: green;
+}
+
+input[type=password] {
+	width: 250px;
+}

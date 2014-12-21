@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.6.3.201411271034-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>WebContent/WEB-INF/portal-servlet.xml</config>
+		<config>src/com/tfc/uoc/edu/spring/web/config/dao-context.xml</config>
+		<config>src/com/tfc/uoc/edu/spring/web/config/servce-context.xml</config>
+		<config>src/com/tfc/uoc/edu/spring/web/config/security-context.xml</config>
+	</configs>
+	<autoconfigs>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>
