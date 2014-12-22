@@ -1,13 +1,45 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-<definition name="home" template="/WEB-INF/templates/default.jsp">
+	<definition name="portal.base" template="/WEB-INF/templates/default.jsp">
+		<put-attribute name="includes" value=""></put-attribute>
+		<put-attribute name="title" value="Acme Hosting - Inici"></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp"></put-attribute>
+		<put-attribute name="nav" value="/WEB-INF/tiles/nav.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/content.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"></put-attribute>
+	</definition>
 
-<put-attribute name="title" value="Acme Hosting - Inici"></put-attribute>
-<put-attribute name="header" value="/WEB-INF/tiles/header.jsp"></put-attribute>
-<put-attribute name="nav" value="/WEB-INF/tiles/nav.jsp"></put-attribute>
-<put-attribute name="content" value="/WEB-INF/tiles/content.jsp"></put-attribute>
-<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"></put-attribute>
-</definition>
+	<definition name="home" extends='portal.base'>
+		<put-attribute name="title" value="Acme Hosting - Inici"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/home.jsp"></put-attribute>
+	</definition>
 
+	<definition name="productes" extends='portal.base'>
+		<put-attribute name="title" value="Allotjaments"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/productes.jsp"></put-attribute>
+	</definition>
+
+	<definition name="login" extends='portal.base'>
+		<put-attribute name="title" value="Login"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/login.jsp"></put-attribute>
+	</definition>
+
+	<definition name="nouusuari" extends='portal.base'>
+		<put-attribute name="includes" value="/resources/script/nouusuari.jsp"></put-attribute>
+		<put-attribute name="title" value="Nou Usuari"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/nouusuari.jsp"></put-attribute>
+	</definition>
+
+	<definition name="crearproducte" extends='portal.base'>		
+		<put-attribute name="title" value="Nou Producte"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/crearproducte.jsp"></put-attribute>
+	</definition>
+
+	<definition name="denied" extends='portal.base'>		
+		<put-attribute name="title" value="Accés denegat"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/denied.jsp"></put-attribute>
+	</definition>
+
+	
 </tiles-definitions>

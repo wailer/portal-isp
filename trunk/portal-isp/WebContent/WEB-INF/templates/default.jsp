@@ -12,6 +12,8 @@
 	rel='stylesheet' type='text/css'>
 <title><tiles:insertAttribute name="title">
 	</tiles:insertAttribute></title>
+	
+	<tiles:insertAttribute name="includes"></tiles:insertAttribute>
 </head>
 <body>
 	<div class="header">
