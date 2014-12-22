@@ -36,7 +36,7 @@
 		<security:intercept-url pattern="/**" access="denyAll" />
 		<security:form-login login-page="/login"
 			authentication-failure-url="/login?error=true" />
-		<security:logout logout-success-url="/loggedout" />
+		<security:logout logout-success-url="/home" />
 		<security:access-denied-handler error-page="/denied" />
 		<security:remember-me key="tfc"
 			user-service-ref="jdbcUserService" />

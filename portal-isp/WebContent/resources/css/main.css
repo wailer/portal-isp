@@ -55,7 +55,7 @@ div.header-right {
 	height: 100%;
 }
 
-div.menu-login {
+div.menu-superior {
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -65,6 +65,16 @@ div.menu-login {
 	vertical-alignt: botton;
 	font-size: 18px;
 	position: relative;
+	margin-bottom: 0px;
+}
+
+ul.menu-superior {
+	display: inline-block;
+	list-style-type: none;
+}
+
+li.menu-superior {
+	display: inline-block;
 }
 
 div.title {
@@ -76,64 +86,68 @@ div.title {
 
 div.nav {
 	background: #eeeeee;
-    background: -moz-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc));
-    background: -webkit-linear-gradient(top, #eeeeee 0%,#cccccc 100%);
-    background: -o-linear-gradient(top, #eeeeee 0%,#cccccc 100%);
-    background: -ms-linear-gradient(top, #eeeeee 0%,#cccccc 100%);
-    background: linear-gradient(top, #eeeeee 0%,#cccccc 100%);
+	background: -moz-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee),
+		color-stop(100%, #cccccc));
+	background: -webkit-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+	background: -o-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+	background: -ms-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+	background: linear-gradient(top, #eeeeee 0%, #cccccc 100%);
 	border-style: solid;
 	margin: auto;
-	width: 1280px;    
-    list-style-type: none;
-    font-family: 'Maven Pro';
+	width: 1280px;
+	list-style-type: none;
+	font-family: 'Maven Pro';
 }
 
-
-
 #breadcrumb {
-    font: 11px Arial, Helvetica, sans-serif;
-    background: #eeeeee;
-    background: -moz-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc));
-    background: -webkit-linear-gradient(top, #eeeeee 0%,#cccccc 100%);
-    background: -o-linear-gradient(top, #eeeeee 0%,#cccccc 100%);
-    background: -ms-linear-gradient(top, #eeeeee 0%,#cccccc 100%);
-    background: linear-gradient(top, #eeeeee 0%,#cccccc 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 );
-    height: 30px;
-    line-height: 30px;
-    color: #9b9b9b;
-    border: solid 1px #cacaca;
-    width: 850px;
-    overflow: hidden;
-    margin: 0px;
-    padding: 0px;
+	font: 11px Arial, Helvetica, sans-serif;
+	background: #eeeeee;
+	background: -moz-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee),
+		color-stop(100%, #cccccc));
+	background: -webkit-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+	background: -o-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+	background: -ms-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+	background: linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee',
+		endColorstr='#cccccc', GradientType=0);
+	height: 30px;
+	line-height: 30px;
+	color: #9b9b9b;
+	border: solid 1px #cacaca;
+	width: 850px;
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
 }
 
 #breadcrumb li {
-    list-style-type: none;
-    float: left;
-    padding-left: 10px;
+	list-style-type: none;
+	float: left;
+	padding-left: 10px;
 }
 
 #breadcrumb a {
-    height: 30px;
-    display: block;
-    background-image: url('http://cssdeck.com/uploads/media/items/5/5VfAk4P.png');
-    background-repeat: no-repeat;
-    background-position: right;
-    padding-right: 15px;
-    text-decoration: none;
-    color: #454545;
+	height: 30px;
+	display: block;
+	background-image:
+		url('http://cssdeck.com/uploads/media/items/5/5VfAk4P.png');
+	background-repeat: no-repeat;
+	background-position: right;
+	padding-right: 15px;
+	text-decoration: none;
+	color: #454545;
 }
 
 .home {
-    border: none;
-    margin: 8px 0px;
+	border: none;
+	margin: 8px 0px;
 }
 
-#breadcrumb a:hover { color: #35acc5 }
+#breadcrumb a:hover {
+	color: #35acc5
+}
 
 div.content {
 	background: #555
