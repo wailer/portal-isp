@@ -1,6 +1,7 @@
 package com.tfc.uoc.edu.spring.web.test.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -21,8 +22,8 @@ import com.tfc.uoc.edu.spring.web.dao.UsersDao;
 @ActiveProfiles("dev")
 @ContextConfiguration(locations = {
 		"classpath:com/tfc/uoc/edu/spring/web/config/dao-context.xml",
-		"classpath:com/tfc/uoc/edu/spring/web/config/security-context.xml",
-		"classpath:com/tfc/uoc/edu/spring/web/config/datasource.xml" })
+		"classpath:com/tfc/uoc/edu/spring/web/config/datasource.xml",
+		"classpath:com/tfc/uoc/edu/spring/web/config/security-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserDaoTests {
 
@@ -34,20 +35,27 @@ public class UserDaoTests {
 
 	@Before
 	public void init() {
-		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-		jdbc.execute("DELETE FROM users");
-		jdbc.execute("DELETE FROM authorities");
-
+		JdbcTemplate jdbc = new JdbcTemplate(dataSource);		
+		jdbc.execute("delete from users");
+		jdbc.execute("delete from authorities");
 	}
 
 	@Test
-	public void testCreateUser() {
-		assertEquals("Dummy test", 1, 1);
-		User user = new User("John", "hello", true, "user", "john@j2ee.com");
-		
+	public void testUsers() {
+		User user = new User("Eduard", "12345", true, "user", "eduardgubert@hotmail.com");
 
-		assertTrue("User creation shouldreturn true", usersDao.create(user));
+		assertTrue("User creation should return true", usersDao.create(user));
+
+		List<User> users = usersDao.getAllUsers();
+
+		assertEquals("Number of users should be 1.", 1, users.size());
+
+		assertTrue("User should exist.", usersDao.exists(user.getUsername()));
+
+		assertEquals("Created user should be identical to retrieved user",
+				user, users.get(0));
 
 	}
 
 }
+

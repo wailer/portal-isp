@@ -1,22 +1,20 @@
 package com.tfc.uoc.edu.spring.web.dao;
 
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Component("usersDao")
 public class UsersDao {
 
@@ -26,10 +24,17 @@ public class UsersDao {
 	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
+	private SessionFactory sessionFactory;
+	
+	@Autowired
 	public void setDataSource(DataSource jdbc) {
 		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
 	}
 
+	public Session session() {
+		return sessionFactory.getCurrentSession();
+	}
+	
 	@Transactional
 	public boolean create(User user) {
 		
@@ -51,9 +56,10 @@ public class UsersDao {
 		return jdbc.queryForObject("SELECT count(*) FROM users WHERE username=:username", new MapSqlParameterSource("username", username), Integer.class) >= 1;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		return session().createQuery("from User").list();
+	
 	}
 	
 	
