@@ -50,6 +50,11 @@ public class UsersDao {
 	public boolean exists(String username) {
 		return jdbc.queryForObject("SELECT count(*) FROM users WHERE username=:username", new MapSqlParameterSource("username", username), Integer.class) >= 1;
 	}
+
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
