@@ -1,18 +1,30 @@
 package com.tfc.uoc.edu.spring.web.dao;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+
+
+
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.tfc.uoc.edu.spring.web.validation.ValidEmail;
 
+@Entity
+@Table(name="users")
 public class User {
 
 	@NotBlank(message="L'usuari no pot estar en blanc")
 	@Size(min=5,max=15,message="")
 	@Pattern(regexp="^\\w{5,}$", message="El nom d'usuari  només pot contenir números, lletres o un guió baix")
+	@Id
+	@Column(name="username")
 	private String username;
 	
 	
