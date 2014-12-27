@@ -7,9 +7,11 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.tfc.uoc.edu.spring.web.dao.FormValidationGroup;
 import com.tfc.uoc.edu.spring.web.dao.User;
 import com.tfc.uoc.edu.spring.web.service.UsersService;
 
@@ -42,7 +44,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value="/crearusuari", method=RequestMethod.POST)
-	public String crearUsuari(@Valid User user, BindingResult result) {
+	public String crearUsuari(@Validated(FormValidationGroup.class) User user, BindingResult result) {
 		
 		if(result.hasErrors()) {
 			return "nouusuari";

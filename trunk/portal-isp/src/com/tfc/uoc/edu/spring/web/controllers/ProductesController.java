@@ -3,17 +3,16 @@ package com.tfc.uoc.edu.spring.web.controllers;
 import java.security.Principal;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tfc.uoc.edu.spring.web.dao.FormValidationGroup;
 import com.tfc.uoc.edu.spring.web.dao.Producte;
 import com.tfc.uoc.edu.spring.web.service.ProductesService;
 
@@ -56,7 +55,7 @@ public class ProductesController {
 	}
 
 	@RequestMapping(value = "/docrearproducte", method = RequestMethod.POST)
-	public String doCrearProducte(Model model, @Valid Producte producte,
+	public String doCrearProducte(Model model, @Validated(value=FormValidationGroup.class)  Producte producte,
 			BindingResult result, Principal principal,
 			@RequestParam(value = "delete", required = false) String delete) {
 		

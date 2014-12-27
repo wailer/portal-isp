@@ -1,9 +1,8 @@
 package com.tfc.uoc.edu.spring.web.test.tests;
 
-
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
@@ -23,8 +22,6 @@ import com.tfc.uoc.edu.spring.web.dao.ProductesDao;
 import com.tfc.uoc.edu.spring.web.dao.User;
 import com.tfc.uoc.edu.spring.web.dao.UsersDao;
 
-
-
 @ActiveProfiles("dev")
 @ContextConfiguration(locations = {
 		"classpath:com/tfc/uoc/edu/spring/web/config/dao-context.xml",
@@ -34,13 +31,31 @@ import com.tfc.uoc.edu.spring.web.dao.UsersDao;
 public class ProductesDaoTests {
 
 	@Autowired
-	private ProductesDao productesDao;
+	private ProductesDao ProductesDao;
 
 	@Autowired
 	private UsersDao usersDao;
 
 	@Autowired
 	private DataSource dataSource;
+
+	private User user1 = new User("mgarcia", "Manel Garcia", "1234567890",
+			"manel@tfc.uoc", true, "ROLE_USER");
+	private User user2 = new User("jribas", "Jordi Ribas", "1234567890",
+			"jribas@tfc.uoc", true, "ROLE_ADMIN");
+	private User user3 = new User("jramon", "Joan Ramon", "1234567890", "jramon@tfc.uoc", true, "ROLE_USER");
+	private User user4 = new User("ablasco", "Anna Blasco", "1234567890",
+			"ablasco@tfc.uoc", false, "user");
+
+	private Producte offer1 = new Producte(user1, "This is a test offer.");
+	private Producte offer2 = new Producte(user1, "This is another test offer.");
+	private Producte offer3 = new Producte(user2, "This is yet another test offer.");
+	private Producte offer4 = new Producte(user3, "This is a test offer once again.");
+	private Producte offer5 = new Producte(user3,
+			"Here is an interesting offer of some kind.");
+	private Producte offer6 = new Producte(user3, "This is just a test offer.");
+	private Producte offer7 = new Producte(user4,
+			"This is a test offer for a user that is not enabled.");
 
 	@Before
 	public void init() {
@@ -49,59 +64,122 @@ public class ProductesDaoTests {
 		jdbc.execute("delete from offers");
 		jdbc.execute("delete from users");
 	}
-
+	
 	@Test
-	public void testOffers() {
-
-		User user = new User("johnwpurcell", "John Purcell", "hellothere",
-				"john@caveofprogramming.com", true, "user");
-
-		assertTrue("User creation should return true", usersDao.create(user));
-
-		Producte producte = new Producte(user, "This is a test offer.");
-
-		assertTrue("Offer creation should return true", productesDao.create(producte));
-
-		List<Producte> offers = productesDao.getProductes();
-
-		assertEquals("Should be one offer in database.", 1, offers.size());
-
-		assertEquals("Retrieved offer should match created offer.", producte,
-				offers.get(0));
-
-		// Get the offer with ID filled in.
-		producte = offers.get(0);
-
-		producte.setText("Updated offer text.");
-		assertTrue("Offer update should return true", productesDao.update(producte));
-
-		Producte updated = productesDao.getProducte(producte.getId());
-
-		assertEquals("Updated offer should match retrieved updated offer",
-				producte, updated);
-
-		// Test get by ID ///////
-		Producte offer2 = new Producte(user, "This is a test offer.");
-
-		assertTrue("Offer creation should return true", productesDao.create(offer2));
+	public void testDelete() {
+		usersDao.create(user1);
+		usersDao.create(user2);
+		usersDao.create(user3);
+		usersDao.create(user4);
+		ProductesDao.saveOrUpdate(offer2);
+		ProductesDao.saveOrUpdate(offer3);
+		ProductesDao.saveOrUpdate(offer4);
+		ProductesDao.saveOrUpdate(offer5);
+		ProductesDao.saveOrUpdate(offer6);
+		ProductesDao.saveOrUpdate(offer7);
 		
-		List<Producte> userOffers = productesDao.getProductes(user.getUsername());
-		assertEquals("Should be two offers for user.", 2, userOffers.size());
+		Producte retrieved1 = ProductesDao.getProducte(offer2.getId());
+		assertNotNull("Producte with ID " + retrieved1.getId() + " should not be null (deleted, actual)", retrieved1);
 		
-		List<Producte> secondList = productesDao.getProductes();
+		ProductesDao.delete(offer2.getId());
 		
-		for(Producte current: secondList) {
-			Producte retrieved = productesDao.getProducte(current.getId());
-			
-			assertEquals("Offer by ID should match offer from list.", current, retrieved);
-		}
+		Producte retrieved2 = ProductesDao.getProducte(offer2.getId());
+		assertNull("Producte with ID " + retrieved1.getId() + " should be null (deleted, actual)", retrieved2);
+	}
+	
+	@Test
+	public void testGetById() {
+		usersDao.create(user1);
+		usersDao.create(user2);
+		usersDao.create(user3);
+		usersDao.create(user4);
+		ProductesDao.saveOrUpdate(offer1);
+		ProductesDao.saveOrUpdate(offer2);
+		ProductesDao.saveOrUpdate(offer3);
+		ProductesDao.saveOrUpdate(offer4);
+		ProductesDao.saveOrUpdate(offer5);
+		ProductesDao.saveOrUpdate(offer6);
+		ProductesDao.saveOrUpdate(offer7);
 		
-		// Test deletion
-		productesDao.delete(producte.getId());
-
-		List<Producte> finalList = productesDao.getProductes();
-
-		assertEquals("Offers lists should contain one offer.", 1, finalList.size());
+		Producte retrieved1 = ProductesDao.getProducte(offer1.getId());
+		assertEquals("Productes should match", offer1, retrieved1);
+		
+		Producte retrieved2 = ProductesDao.getProducte(offer7.getId());
+		assertNull("Should not retrieve offer for disabled user.", retrieved2);
 	}
 
+	@Test
+	public void testCreateRetrieve() {
+		usersDao.create(user1);
+		usersDao.create(user2);
+		usersDao.create(user3);
+		usersDao.create(user4);
+		
+		ProductesDao.saveOrUpdate(offer1);
+
+		List<Producte> offers1 = ProductesDao.getProductes();
+		assertEquals("Should be one offer.", 1, offers1.size());
+
+		assertEquals("Retrieved offer should equal inserted offer.", offer1,
+				offers1.get(0));
+
+		ProductesDao.saveOrUpdate(offer2);
+		ProductesDao.saveOrUpdate(offer3);
+		ProductesDao.saveOrUpdate(offer4);
+		ProductesDao.saveOrUpdate(offer5);
+		ProductesDao.saveOrUpdate(offer6);
+		ProductesDao.saveOrUpdate(offer7);
+
+		List<Producte> offers2 = ProductesDao.getProductes();
+		assertEquals("Should be six offers for enabled users.", 6,
+				offers2.size());
+
+	}
+	
+	@Test
+	public void testUpdate() {
+		usersDao.create(user1);
+		usersDao.create(user2);
+		usersDao.create(user3);
+		usersDao.create(user4);
+		ProductesDao.saveOrUpdate(offer2);
+		ProductesDao.saveOrUpdate(offer3);
+		ProductesDao.saveOrUpdate(offer4);
+		ProductesDao.saveOrUpdate(offer5);
+		ProductesDao.saveOrUpdate(offer6);
+		ProductesDao.saveOrUpdate(offer7);
+		
+		offer3.setText("This offer has updated text.");
+		ProductesDao.saveOrUpdate(offer3);
+		
+		Producte retrieved = ProductesDao.getProducte(offer3.getId());
+		assertEquals("Retrieved offer should be updated.", offer3, retrieved);
+	}
+
+	@Test
+	public void testGetUsername() {
+		usersDao.create(user1);
+		usersDao.create(user2);
+		usersDao.create(user3);
+		usersDao.create(user4);
+
+		ProductesDao.saveOrUpdate(offer1);
+		ProductesDao.saveOrUpdate(offer2);
+		ProductesDao.saveOrUpdate(offer3);
+		ProductesDao.saveOrUpdate(offer4);
+		ProductesDao.saveOrUpdate(offer5);
+		ProductesDao.saveOrUpdate(offer6);
+		ProductesDao.saveOrUpdate(offer7);
+
+		List<Producte> offers1 = ProductesDao.getProductes(user3.getUsername());
+		assertEquals("Should be three offers for this user.", 3, offers1.size());
+
+		List<Producte> offers2 = ProductesDao.getProductes("sdfsfd");
+		assertEquals("Should be zero offers for this user.", 0, offers2.size());
+
+		List<Producte> offers3 = ProductesDao.getProductes(user2.getUsername());
+		assertEquals("Should be 1 offer for this user.", 1, offers3.size());
+	}
 }
+
+	
