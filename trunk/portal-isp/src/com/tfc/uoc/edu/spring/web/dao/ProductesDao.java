@@ -1,14 +1,11 @@
 package com.tfc.uoc.edu.spring.web.dao;
 
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -29,29 +26,14 @@ public class ProductesDao {
 
 	public List<Producte> getProductes() {
 
-		return jdbc.query("select * from offers, users where offers.username=users.username and users.enabled=true", new RowMapper<Producte>() {
-
-			public Producte mapRow(ResultSet rs, int rowNum) throws SQLException {
-				
-
-				User user = new User();
-				user.setAuthority(rs.getString("authority"));
-				user.setEmail(rs.getString("email"));
-				user.setEnabled(true);
-				user.setName(rs.getString("name"));
-				user.setUsername(rs.getString("username"));
-				
-						
-				Producte producte = new Producte();
-				producte.setId(rs.getInt("id"));
-				producte.setText(rs.getString("text"));
-				producte.setUser(user);
-
-				return producte;
-			}
-
-		});
+		return jdbc.query("select * from offers, users where offers.username=users.username and users.enabled=true", new ProducteRowMapper());
 	}
+	
+	public List<Producte> getProductes(String username) {
+
+		return jdbc.query("select * from offers, users where offers.username=users.username and users.enabled=true and offers.username=:username", new MapSqlParameterSource("username", username), new ProducteRowMapper());
+	}
+	
 	
 	public boolean update(Producte offer) {
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
@@ -86,29 +68,8 @@ public class ProductesDao {
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("id", id);
 
-		return jdbc.queryForObject("select * from offers, users where offers.username=users.username and users.enabled=true", params,
-				new RowMapper<Producte>() {
+		return jdbc.queryForObject("select * from offers, users where offers.username=users.username and users.enabled=true and offers.id=:id", params,	new ProducteRowMapper());					}
 
-					public Producte mapRow(ResultSet rs, int rowNum)
-							throws SQLException {
-						
-						User user = new User();
-						user.setAuthority(rs.getString("authority"));
-						user.setEmail(rs.getString("email"));
-						user.setEnabled(true);
-						user.setName(rs.getString("name"));
-						user.setUsername(rs.getString("username"));
-						
-								
-						Producte producte = new Producte();
-						producte.setId(rs.getInt("id"));
-						producte.setText(rs.getString("text"));
-						producte.setUser(user);
-						
-						return producte;
-					}
-
-				});
 	}
 	
-}
+

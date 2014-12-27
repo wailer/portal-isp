@@ -20,29 +20,34 @@ import com.tfc.uoc.edu.spring.web.service.UsersService;
 
 
 @Controller
-public class HomeController {
+public class AdminController {
 	
-	private static Logger logger = Logger.getLogger(HomeController.class);
+	private static Logger logger = Logger.getLogger(AdminController.class);
 	
 	@Autowired
 	private ProductesService productesService;
 	@Autowired
 	private UsersService usersService;
 	
-	@RequestMapping("/")
-	public String showHome(Model model, Principal principal) {	
-		logger.info("Showing home....");
+		
+	@RequestMapping("/admin")
+	public String showAdmin(Model model, Principal principal) {		
 		List<Producte> productes = productesService.getCurrent();
 		model.addAttribute("productes", productes);
-		boolean hasProductes = false;
 		
-		if (principal != null) {
-			hasProductes = productesService.hasProductes(principal.getName());
-		}
+		List<User> users = usersService.getUsers();
+		model.addAttribute("users", users);
 		
-		model.addAttribute("hasProductes", hasProductes);
-		return "home";
+		return "admin";
 	}
-	
-
+		@RequestMapping("/editar-productes")
+		public String showAdminEditarProductes(Model model, Principal principal) {		
+			List<Producte> productes = productesService.getCurrent();
+			model.addAttribute("productes", productes);
+			
+			List<User> users = usersService.getUsers();
+			model.addAttribute("users", users);
+			
+			return "editar-productes";
+	}
 }

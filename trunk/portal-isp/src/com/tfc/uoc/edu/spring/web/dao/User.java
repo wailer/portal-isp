@@ -40,6 +40,8 @@ public class User {
 	@ValidEmail(message="El correu no sembla correcte")
 	private String email;
 	
+	@NotBlank
+	@Size(min=5,max=15,message="")
 	private String name;
 	
 	@Override

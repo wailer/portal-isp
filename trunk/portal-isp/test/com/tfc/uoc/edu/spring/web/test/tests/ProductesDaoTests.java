@@ -51,7 +51,7 @@ public class ProductesDaoTests {
 	}
 
 	@Test
-	public void testCreateUser() {
+	public void testOffers() {
 
 		User user = new User("johnwpurcell", "John Purcell", "hellothere",
 				"john@caveofprogramming.com", true, "user");
@@ -62,15 +62,15 @@ public class ProductesDaoTests {
 
 		assertTrue("Offer creation should return true", productesDao.create(producte));
 
-		List<Producte> productes = productesDao.getProductes();
+		List<Producte> offers = productesDao.getProductes();
 
-		assertEquals("Should be one offer in database.", 1, productes.size());
+		assertEquals("Should be one offer in database.", 1, offers.size());
 
 		assertEquals("Retrieved offer should match created offer.", producte,
-				productes.get(0));
+				offers.get(0));
 
 		// Get the offer with ID filled in.
-		producte = productes.get(0);
+		producte = offers.get(0);
 
 		producte.setText("Updated offer text.");
 		assertTrue("Offer update should return true", productesDao.update(producte));
@@ -80,11 +80,28 @@ public class ProductesDaoTests {
 		assertEquals("Updated offer should match retrieved updated offer",
 				producte, updated);
 
+		// Test get by ID ///////
+		Producte offer2 = new Producte(user, "This is a test offer.");
+
+		assertTrue("Offer creation should return true", productesDao.create(offer2));
+		
+		List<Producte> userOffers = productesDao.getProductes(user.getUsername());
+		assertEquals("Should be two offers for user.", 2, userOffers.size());
+		
+		List<Producte> secondList = productesDao.getProductes();
+		
+		for(Producte current: secondList) {
+			Producte retrieved = productesDao.getProducte(current.getId());
+			
+			assertEquals("Offer by ID should match offer from list.", current, retrieved);
+		}
+		
+		// Test deletion
 		productesDao.delete(producte.getId());
 
-		List<Producte> empty = productesDao.getProductes();
+		List<Producte> finalList = productesDao.getProductes();
 
-		assertEquals("Offers lists should be empty.", 0, empty.size());
+		assertEquals("Offers lists should contain one offer.", 1, finalList.size());
 	}
 
 }

@@ -17,7 +17,7 @@ public class ErrorHandler {
 	@ExceptionHandler(AccessDeniedException.class)
 	public String handleAccessDeniedException(AccessDeniedException ex) {
 		ex.printStackTrace();
-		return "errordb";
+		return "errorpermisos";
 	}	
 	
 }

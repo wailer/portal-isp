@@ -31,15 +31,48 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/nouusuari.jsp"></put-attribute>
 	</definition>
 
-	<definition name="crearproducte" extends='portal.base'>		
+	<definition name="crearproducte" extends='portal.base'>
 		<put-attribute name="title" value="Nou Producte"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/crearproducte.jsp"></put-attribute>
 	</definition>
 
-	<definition name="denied" extends='portal.base'>		
-		<put-attribute name="title" value="Accés denegat"></put-attribute>
-		<put-attribute name="content" value="/WEB-INF/tiles/denied.jsp"></put-attribute>
+
+	<definition name="errordb" extends='portal.base'>
+		<put-attribute name="title" value="Error BD"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/error/errordb.jsp"></put-attribute>
 	</definition>
 
+	<definition name="usuaricreat" extends='portal.base'>
+		<put-attribute name="title" value="Usuari creat correctament"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/usuaricreat.jsp"></put-attribute>
+	</definition>
+
+	<definition name="productecreat" extends='portal.base'>
+		<put-attribute name="title" value="Producte creat correctament"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/productecreat.jsp"></put-attribute>
+	</definition>
+
+	<definition name="errorpermisos" extends='portal.base'>
+		<put-attribute name="title" value="Accés denegat"></put-attribute>
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/error/errorpermisos.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin" extends='portal.base'>
+		<put-attribute name="title" value="Admin"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/admin.jsp"></put-attribute>
+	</definition>
+
+	<definition name="editar-productes" extends='portal.base'>
+		<put-attribute name="title" value="Admin"></put-attribute>
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/admin/editar-productes.jsp"></put-attribute>
+	</definition>
+	
+		<definition name="producteeliminat" extends='portal.base'>
+		<put-attribute name="title" value="Producte eliminat"></put-attribute>
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/producteeliminat.jsp"></put-attribute>
+	</definition>
 	
 </tiles-definitions>
