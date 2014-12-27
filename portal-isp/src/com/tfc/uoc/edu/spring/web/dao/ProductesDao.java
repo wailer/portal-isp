@@ -29,17 +29,25 @@ public class ProductesDao {
 
 	public List<Producte> getProductes() {
 
-		return jdbc.query("select * from offers", new RowMapper<Producte>() {
+		return jdbc.query("select * from offers, users where offers.username=users.username and users.enabled=true", new RowMapper<Producte>() {
 
 			public Producte mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Producte offer = new Producte();
+				
 
-				offer.setId(rs.getInt("id"));
-				offer.setName(rs.getString("name"));
-				offer.setText(rs.getString("text"));
-				offer.setEmail(rs.getString("mail"));
-				System.out.println("Producte " + offer.getId() + " carregat : " + offer.getName());
-				return offer;
+				User user = new User();
+				user.setAuthority(rs.getString("authority"));
+				user.setEmail(rs.getString("email"));
+				user.setEnabled(true);
+				user.setName(rs.getString("name"));
+				user.setUsername(rs.getString("username"));
+				
+						
+				Producte producte = new Producte();
+				producte.setId(rs.getInt("id"));
+				producte.setText(rs.getString("text"));
+				producte.setUser(user);
+
+				return producte;
 			}
 
 		});
@@ -48,14 +56,14 @@ public class ProductesDao {
 	public boolean update(Producte offer) {
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
 		
-		return jdbc.update("update offers set name=:name, text=:text, mail=:email where id=:id", params) == 1;
+		return jdbc.update("UPDATE offers SET text=:text WHERE id=:id", params) == 1;
 	}
 	
 	public boolean create(Producte offer) {
 		
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
 		
-		return jdbc.update("insert into offers (name, text, mail) values (:name, :text, :email)", params) == 1;
+		return jdbc.update("insert into offers (username, text) values (:username, :text)", params) == 1;
 	}
 	
 	@Transactional
@@ -63,7 +71,7 @@ public class ProductesDao {
 		
 		SqlParameterSource[] params = SqlParameterSourceUtils.createBatch(offers.toArray());
 		
-		return jdbc.batchUpdate("insert into offers (id, name, text, mail) values (:id, :name, :text, :email)", params);
+		return jdbc.batchUpdate("insert into offers (username, text) values (:username, :text)", params);
 	}
 	
 	public boolean delete(int id) {
@@ -72,24 +80,32 @@ public class ProductesDao {
 		return jdbc.update("delete from offers where id=:id", params) == 1;
 	}
 
+
 	public Producte getProducte(int id) {
 
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("id", id);
 
-		return jdbc.queryForObject("select * from offers where id=:id", params,
+		return jdbc.queryForObject("select * from offers, users where offers.username=users.username and users.enabled=true", params,
 				new RowMapper<Producte>() {
 
 					public Producte mapRow(ResultSet rs, int rowNum)
 							throws SQLException {
-						Producte offer = new Producte();
-
-						offer.setId(rs.getInt("id"));
-						offer.setName(rs.getString("name"));
-						offer.setText(rs.getString("text"));
-						offer.setEmail(rs.getString("mail"));
-
-						return offer;
+						
+						User user = new User();
+						user.setAuthority(rs.getString("authority"));
+						user.setEmail(rs.getString("email"));
+						user.setEnabled(true);
+						user.setName(rs.getString("name"));
+						user.setUsername(rs.getString("username"));
+						
+								
+						Producte producte = new Producte();
+						producte.setId(rs.getInt("id"));
+						producte.setText(rs.getString("text"));
+						producte.setUser(user);
+						
+						return producte;
 					}
 
 				});

@@ -11,7 +11,7 @@
 		<config>src/com/tfc/uoc/edu/spring/web/config/dao-context.xml</config>
 		<config>src/com/tfc/uoc/edu/spring/web/config/servce-context.xml</config>
 		<config>src/com/tfc/uoc/edu/spring/web/config/security-context.xml</config>
-		<config>test/com/tfc/uoc/edu/spring/web/config/datasource.xml</config>
+		<config>test/com/tfc/uoc/edu/spring/web/test/config/datasource.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
