@@ -38,17 +38,17 @@ public class UsersDao {
 	@Transactional
 	public boolean create(User user) {
 		
-		//BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		
 		params.addValue("username", user.getUsername());
 		params.addValue("password",passwordEncoder.encode(user.getPassword()));
+		params.addValue("name", user.getName());
 		params.addValue("email", user.getEmail());
 		params.addValue("enabled", user.isEnabled());
 		params.addValue("authority", user.getAuthority());
 		
-		jdbc.update("INSERT INTO users (username, password, email, enabled) values (:username, :password, :email, :enabled)", params);
-		return jdbc.update("INSERT INTO authorities (username, authority) values (:username, :authority)", params) == 1;
+		return jdbc.update("INSERT INTO users (username, name, password, email, enabled, authority) values (:username, :name,  :password, :email, :enabled, :authority)", params) ==1;
+		
 	
 	}
 
