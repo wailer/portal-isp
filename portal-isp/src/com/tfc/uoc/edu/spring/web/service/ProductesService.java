@@ -26,7 +26,7 @@ public class ProductesService {
 
 	@Secured("ROLE_ADMIN")
 	public void createProducte(Producte producte) {
-		productesDao.create(producte);
+		productesDao.saveOrUpdate(producte);
 
 	}
 
@@ -61,12 +61,7 @@ public class ProductesService {
 	}
 
 	public void saveOrUpdate(Producte producte) {
-		if(producte.getId() != 0) {
-			productesDao.update(producte);
-		} else {
-			productesDao.create(producte);
-		}
-		
+		productesDao.saveOrUpdate(producte);		
 	}
 
 	public void delete(int id) {

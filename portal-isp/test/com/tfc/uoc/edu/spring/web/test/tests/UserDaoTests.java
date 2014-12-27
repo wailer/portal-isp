@@ -33,6 +33,15 @@ public class UserDaoTests {
 
 	@Autowired
 	private DataSource dataSource;
+	
+	private User user1 = new User("johnwpurcell", "John Purcell", "hellothere",
+			"john@caveofprogramming.com", true, "ROLE_USER");
+	private User user2 = new User("richardhannay", "Richard Hannay", "the39steps",
+			"richard@caveofprogramming.com", true, "ROLE_ADMIN");
+	private User user3 = new User("suetheviolinist", "Sue Black", "iloveviolins",
+			"sue@caveofprogramming.com", true, "ROLE_USER");
+	private User user4 = new User("rogerblake", "Rog Blake", "liberator",
+			"rog@caveofprogramming.com", false, "user");
 
 	@Before
 	public void init() {
@@ -43,17 +52,48 @@ public class UserDaoTests {
 	}
 
 	@Test
+	public void testCrearExtreure() {
+		usersDao.create(user1);
+		
+		List<User> users1 = usersDao.getAllUsers();
+		
+		assertEquals("1 usuari ha de ser creat i extret",1,users1.size());		
+		assertEquals("L'usuari insertat ha de coincidir amb l'usuari extret", user1, users1.get(0));
+		
+		usersDao.create(user2);
+		usersDao.create(user3);
+		usersDao.create(user4);
+		
+		List<User> users2 = usersDao.getAllUsers();
+		assertEquals("Hauria d'extreure 4 usuaris.", 4, users2.size());
+	}
+	
+	@Test
+	public void testExists() {
+		usersDao.create(user2);
+		usersDao.create(user3);		
+		
+		assertTrue("Ha d'existir.", usersDao.exists(user2.getUsername()));
+		assertTrue("Ha d'existir.", usersDao.exists(user3.getUsername()));
+		assertFalse("No ha d'existir.", usersDao.exists(user4.getUsername()));
+		
+		
+	}
+	
+	
+	@Test
 	public void testUsers() {
 		User user = new User("johnwpurcell", "John Purcell", "hellothere",
 				"john@caveofprogramming.com", true, "user");
 
-		assertTrue("User creation should return true", usersDao.create(user));
+		usersDao.create(user);
 
 		List<User> users = usersDao.getAllUsers();
 
 		assertEquals("Number of users should be 1.", 1, users.size());
 
-		assertTrue("User should exist.", usersDao.exists(user.getUsername()));
+		assertTrue("Ha d'existir.", usersDao.exists(user.getUsername()));
+		assertFalse("No ha d'existir.", usersDao.exists("asdalsdajsldkjasldkajlskd"));
 
 		assertEquals("Created user should be identical to retrieved user",
 				user, users.get(0));

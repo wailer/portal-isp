@@ -1,20 +1,29 @@
 package com.tfc.uoc.edu.spring.web.dao;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.tfc.uoc.edu.spring.web.validation.ValidEmail;
-
+@Entity
+@Table(name="offers")
 public class Producte {
 
+	
+	@Id
+	@GeneratedValue
 	private int id;
-
-
 	
 	@NotNull
-	@Size(min=20, max=255, message="El nom ha de tenir entre 20 i 255 caràcters")
+	@Size(min=20, max=255,groups={PersistenceValidationGroup.class, FormValidationGroup.class})	
 	private String text;
 
+	@ManyToOne
+	@JoinColumn(name="username")
 	private User user;
 	
 	public Producte() {

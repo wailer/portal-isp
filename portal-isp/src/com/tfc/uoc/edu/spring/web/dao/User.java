@@ -4,8 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
 
 
 
@@ -22,26 +24,28 @@ import com.tfc.uoc.edu.spring.web.validation.ValidEmail;
 @Table(name="users")
 public class User {
 
-	@NotBlank(message="L'usuari no pot estar en blanc")
-	@Size(min=5,max=15,message="")
-	@Pattern(regexp="^\\w{5,}$", message="El nom d'usuari  només pot contenir números, lletres o un guió baix")
+	@NotBlank(groups={PersistenceValidationGroup.class,FormValidationGroup.class})
+	@Size(min=5,max=15,message="", groups={PersistenceValidationGroup.class,FormValidationGroup.class})
+	@Pattern(regexp="^\\w{5,}$", groups={PersistenceValidationGroup.class,FormValidationGroup.class})
 	@Id
 	@Column(name="username")
 	private String username;
 	
 	
-	@NotBlank(message="No pot estar en blanc.")
-	@Pattern(regexp="^\\S+$",message="No pot contenir espais")
-	@Size(min=8, max=15, message="El password ha de tenir una longitud entre 8 i 15")
+	@NotBlank(groups={PersistenceValidationGroup.class,FormValidationGroup.class})
+	@Pattern(regexp="^\\S+$",groups={PersistenceValidationGroup.class,FormValidationGroup.class})
+	@Size(min=8, max=15, groups={FormValidationGroup.class})
 	private String password;
+	
 	private boolean enabled = false;
+	
 	private String authority;
 	
-	@ValidEmail(message="El correu no sembla correcte")
+	@ValidEmail(groups={PersistenceValidationGroup.class,FormValidationGroup.class})
 	private String email;
 	
 	@NotBlank
-	@Size(min=5,max=15,message="")
+	@Size(min=5,max=15, groups={PersistenceValidationGroup.class,FormValidationGroup.class})
 	private String name;
 	
 	@Override
