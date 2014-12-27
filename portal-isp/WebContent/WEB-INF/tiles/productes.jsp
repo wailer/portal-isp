@@ -15,8 +15,8 @@
 <tr><td>Name</td><td>Email</td><td>Offer</td></tr>
 <c:forEach var="producte" items="${productes}">
 <tr>
-  <td><p><c:out value="${producte.name}"></c:out></p></td>
-  <td><p><c:out value="${producte.email}"></c:out></p></td>
+  <td><p><c:out value="${producte.user.name}"></c:out></p></td>
+  <td><p><c:out value="${producte.user.email}"></c:out></p></td>
   <td><p><c:out value="${producte.text}"></c:out></p></td>
 
 </tr>

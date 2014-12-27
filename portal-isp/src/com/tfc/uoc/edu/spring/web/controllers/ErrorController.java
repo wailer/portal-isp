@@ -1,9 +1,5 @@
 package com.tfc.uoc.edu.spring.web.controllers;
 
-
-
-
-
 import java.security.Principal;
 import java.util.List;
 
@@ -18,31 +14,24 @@ import com.tfc.uoc.edu.spring.web.dao.User;
 import com.tfc.uoc.edu.spring.web.service.ProductesService;
 import com.tfc.uoc.edu.spring.web.service.UsersService;
 
-
 @Controller
-public class HomeController {
-	
+public class ErrorController {
+
 	private static Logger logger = Logger.getLogger(HomeController.class);
-	
+
 	@Autowired
 	private ProductesService productesService;
 	@Autowired
 	private UsersService usersService;
-	
-	@RequestMapping("/")
-	public String showHome(Model model, Principal principal) {	
-		logger.info("Showing home....");
-		List<Producte> productes = productesService.getCurrent();
-		model.addAttribute("productes", productes);
-		boolean hasProductes = false;
-		
-		if (principal != null) {
-			hasProductes = productesService.hasProductes(principal.getName());
-		}
-		
-		model.addAttribute("hasProductes", hasProductes);
-		return "home";
+
+	@RequestMapping("/errorpermisos")
+	public String showErrorPermisos(Model model, Principal principal) {
+		return "errorpermisos";
 	}
 	
+	@RequestMapping("/errordb")
+	public String showHome(Model model, Principal principal) {
+		return "errordb";
+	}
 
 }

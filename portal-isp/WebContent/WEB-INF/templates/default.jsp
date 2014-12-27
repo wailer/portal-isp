@@ -10,6 +10,9 @@
 	rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Oswald'
 	rel='stylesheet' type='text/css'>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/static/script/jquery-1.11.2.min.js"></script>
+		
 <title><tiles:insertAttribute name="title">
 	</tiles:insertAttribute></title>
 	

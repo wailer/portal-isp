@@ -1,0 +1,1 @@
+Ha ocurregut un problema amb la base de dades.

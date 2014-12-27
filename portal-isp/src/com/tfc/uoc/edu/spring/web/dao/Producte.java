@@ -18,7 +18,7 @@ public class Producte {
 	private User user;
 	
 	public Producte() {
-
+		this.user = new User();	
 	}
 
 	public Producte(User user, String text) {

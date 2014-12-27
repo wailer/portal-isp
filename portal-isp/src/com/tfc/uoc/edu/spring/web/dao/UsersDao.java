@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,17 +24,17 @@ public class UsersDao {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@Autowired
-	private SessionFactory sessionFactory;
+	//@Autowired
+	//private SessionFactory sessionFactory;
 	
 	@Autowired
 	public void setDataSource(DataSource jdbc) {
 		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
 	}
 
-	public Session session() {
+	/*public Session session() {
 		return sessionFactory.getCurrentSession();
-	}
+	}*/
 	
 	@Transactional
 	public boolean create(User user) {
@@ -56,10 +57,8 @@ public class UsersDao {
 		return jdbc.queryForObject("SELECT count(*) FROM users WHERE username=:username", new MapSqlParameterSource("username", username), Integer.class) >= 1;
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<User> getAllUsers() {
-		return session().createQuery("from User").list();
-	
+		return jdbc.query("select * from users", BeanPropertyRowMapper.newInstance(User.class));
 	}
 	
 	
