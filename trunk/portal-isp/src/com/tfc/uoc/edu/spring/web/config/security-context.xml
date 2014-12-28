@@ -51,6 +51,8 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/errorpermisos"
 			access="permitAll" />
+					<security:intercept-url pattern="/test-flow"
+			access="permitAll" />
 		<security:intercept-url pattern="/**" access="denyAll" />
 		<security:form-login login-page="/login"
 			authentication-failure-url="/login?error=true" />

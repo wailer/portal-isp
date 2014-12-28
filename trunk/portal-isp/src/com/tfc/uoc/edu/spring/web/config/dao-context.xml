@@ -12,7 +12,7 @@
 	</context:component-scan>
 
 	<beans profile="production">
-		<context:property-placeholder location="/WEB-INF/jdbc.properties" />
+		<context:property-placeholder location="classpath:com/tfc/uoc/edu/spring/web/config/jdbc.properties" />
 
 		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 			destroy-method="close">
