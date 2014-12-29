@@ -10,29 +10,27 @@
 
 
 	<div class="header-right">
-		<nav class="header-nav">
-			<a class="header-link header-nav-link active"
-				href="<c:url value='/'/>">Inici</a>
+		<div id="loginmenu" class="button-group">			
 			<sec:authorize access="!isAuthenticated()">
-				<a class="header-link header-nav-link"
+				<a class="button button-green"
 					href="<c:url value='/login'/>">Login</a>
 			</sec:authorize>
 			<sec:authorize access="!isAuthenticated()">
-				<a class="header-link header-nav-link"
-					href="<c:url value='/nouusurai'/>">Registre</a>
+				<a class="button button-blue"
+					href="<c:url value='/nouusuari'/>">Registre</a>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
-				<a class="header-link header-nav-link"
+				<a class="button button-red"
 					href="<c:url value='/j_spring_security_logout'/>">Sortir</a>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_USER')">
-				<a class="header-link header-nav-link" href="/client">Àrea
+				<a class="button button-purple " href="/client">Àrea
 					Client</a>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<a class="header-link header-nav-link" href="/admin">Administració</a>
+				<a class="button button-purple" href="/admin">Administració</a>
 			</sec:authorize>			
-		</nav>
+		</div>
 	
 	</div>
 
