@@ -1,0 +1,63 @@
+div.header {
+	background: none repeat scroll 0 0 #20aae5;
+	border-bottom: 0.25em solid #1894ca;
+	box-shadow: 0 -1px rgba(255, 255, 255, 0.05) inset, 0 1px
+		rgba(0, 0, 0, 0.05);
+	line-height: 4em;
+	position: relative;
+	text-align: center;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+	z-index: 1;
+	height: 64px;
+	
+}
+
+.header-logo, .header-logo:hover, .header-logo:focus {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.header-logo {
+	display: block;
+	position: relative;
+	float: left;
+	margin: 0px -0.5em;
+	padding: 0px 0.5em;
+	font-family: PTSansBold, Helvetica, Arial, sans-serif;
+	font-size: 1.75em;
+	font-weight: bold;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.header-right {
+    float: right;
+    margin: 1em 0px;
+    line-height: 2em;
+    overflow: hidden;
+}
+
+*::-moz-placeholder {
+	color: #b0c3c3 !important;
+	opacity: 1;
+}
+
+.header-nav {
+	float: left;
+	overflow: hidden;
+}
+
+div.header-row:before,.row:after {
+	content: "";
+	display: table;
+}
+
+div.header-row:after {
+	clear: both;
+}
+
+div.header-row {
+	position: relative;
+	margin: 0px auto;
+	padding: 0px 1.5em;
+	max-width: 61em;
+}
