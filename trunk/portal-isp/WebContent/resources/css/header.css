@@ -8,8 +8,7 @@ div.header {
 	text-align: center;
 	text-shadow: 0 1px rgba(0, 0, 0, 0.1);
 	z-index: 1;
-	height: 64px;
-	
+	height: 64px;	
 }
 
 .header-logo, .header-logo:hover, .header-logo:focus {
@@ -60,4 +59,31 @@ div.header-row {
 	margin: 0px auto;
 	padding: 0px 1.5em;
 	max-width: 61em;
+}
+
+a.header-link {
+    transition-duration: 0.1s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    transition-property: #3A6EA5, color, opacity, border-color, text-shadow;
+}
+
+.header-link.active {
+    color: #084a68;
+    font-weight: bold;
+    text-shadow: 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.header-link {
+    float: left;
+    margin-left: 0.75em;
+    padding: 0px 0.875em;
+    color: #FFF;
+    border-radius: 2px;
+    transition-property: #3A6EA5;
+}
+
+.header-nav {
+    float: left;
+    overflow: hidden;
 }
