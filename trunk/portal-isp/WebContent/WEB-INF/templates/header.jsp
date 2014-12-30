@@ -6,9 +6,7 @@
 
 <div class="header-row">
 
-		<a class="header-logo" tabindex="-1" href="/">ACME Hosting</a>
-
-
+		<a class="header-logo" tabindex="-1" href="<c:url value='/'/>">ACME Hosting</a>
 	<div class="header-right">
 		<div id="loginmenu" class="button-group">			
 			<sec:authorize access="!isAuthenticated()">

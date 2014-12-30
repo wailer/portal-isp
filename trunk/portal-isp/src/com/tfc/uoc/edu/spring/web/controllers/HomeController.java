@@ -44,5 +44,17 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("/dominis")
+	public String showDominis(Model model, Principal principal) {	
+		logger.info("Showing dominis....");		
+		return "dominis";
+	}
+	
+	@RequestMapping("/allotjaments")
+	public String showAllotjaments(Model model, Principal principal) {	
+		logger.info("Showing allotjaments....");
+		return "allotjaments";
+	}
+	
 
 }

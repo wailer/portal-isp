@@ -1,0 +1,16 @@
+div.footer {
+	background: none repeat scroll 0 0 #20aae5;
+	border-top: 0.25em solid #1894ca;
+	border-bottom: 0.25em solid #1894ca;
+	box-shadow: 0 -1px rgba(255, 255, 255, 0.05) inset, 0 1px
+		rgba(0, 0, 0, 0.05);
+	line-height: 4em;
+	position: relative;
+	text-align: center;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+	z-index: 1;
+	height: 64px;	
+	color: #FFF;
+    text-decoration: none;
+}
+
