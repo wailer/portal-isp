@@ -7,7 +7,6 @@
 
 	<security:authentication-manager>
 
-
 		<security:authentication-provider>
 			<security:jdbc-user-service
 				data-source-ref="dataSource"
@@ -36,6 +35,10 @@
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/productes"
+			access="permitAll" />
+		<security:intercept-url pattern="/dominis"
+			access="permitAll" />
+		<security:intercept-url pattern="/allotjaments"
 			access="permitAll" />
 		<security:intercept-url pattern="/nouusuari"
 			access="permitAll" />
