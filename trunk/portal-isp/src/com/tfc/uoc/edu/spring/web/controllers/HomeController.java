@@ -32,15 +32,11 @@ public class HomeController {
 	@RequestMapping("/")
 	public String showHome(Model model, Principal principal) {	
 		logger.info("Showing home....");
-		List<Producte> productes = productesService.getCurrent();
+		List<Producte> productes = productesService.getProductes(false);
 		model.addAttribute("productes", productes);
 		boolean hasProductes = false;
 		
-		if (principal != null) {
-			hasProductes = productesService.hasProductes(principal.getName());
-		}
-		
-		model.addAttribute("hasProductes", hasProductes);
+
 		return "home";
 	}
 	

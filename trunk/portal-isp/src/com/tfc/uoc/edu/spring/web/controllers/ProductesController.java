@@ -29,13 +29,13 @@ public class ProductesController {
 	@RequestMapping("/productes")
 	public String showProductes(Model model) {
 
-		List<Producte> productes = productesService.getCurrent();
+		List<Producte> productes = productesService.getProductes(true);
 		model.addAttribute("productes", productes);
 
 		return "productes";
 	}
 
-	@RequestMapping("/crearproducte")
+/*	@RequestMapping("/crearproducte")
 	public String createProducte(Model model, Principal principal) {
 
 		Producte producte = null;
@@ -52,7 +52,7 @@ public class ProductesController {
 		model.addAttribute("producte", producte);
 
 		return "crearproducte";
-	}
+	}*/
 
 	@RequestMapping(value = "/docrearproducte", method = RequestMethod.POST)
 	public String doCrearProducte(Model model, @Validated(value=FormValidationGroup.class)  Producte producte,
@@ -60,16 +60,11 @@ public class ProductesController {
 			@RequestParam(value = "delete", required = false) String delete) {
 		
 		if (result.hasErrors()) {
-
 			return "crearproducte";
 		}
 		
 		if(delete == null) {
-			String username = principal.getName();
-			producte.getUser().setUsername(username);
-
 			productesService.saveOrUpdate(producte);
-
 			return "productecreat";
 		} else {
 			productesService.delete(producte.getId());

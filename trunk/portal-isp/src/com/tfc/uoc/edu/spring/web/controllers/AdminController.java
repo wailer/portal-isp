@@ -32,7 +32,7 @@ public class AdminController {
 		
 	@RequestMapping("/admin")
 	public String showAdmin(Model model, Principal principal) {		
-		List<Producte> productes = productesService.getCurrent();
+		List<Producte> productes = productesService.getProductes(true);
 		model.addAttribute("productes", productes);
 		
 		List<User> users = usersService.getUsers();
@@ -42,7 +42,7 @@ public class AdminController {
 	}
 		@RequestMapping("/editar-productes")
 		public String showAdminEditarProductes(Model model, Principal principal) {		
-			List<Producte> productes = productesService.getCurrent();
+			List<Producte> productes = productesService.getProductes(true);
 			model.addAttribute("productes", productes);
 			
 			List<User> users = usersService.getUsers();

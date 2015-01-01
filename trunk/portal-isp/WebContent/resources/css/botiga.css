@@ -5,16 +5,17 @@
  * Licensed under the MIT License:
  * http://www.opensource.org/licenses/mit-license.php
  */
-.plans {
+div.plans {
+	display: inline-block;
 	overflow: hidden;
 	position: relative;
 	margin: 20px auto;
-	padding: 0px 1.5em;
-	max-width: 61%;
+	padding: 0px 1.5em;	
+	text-align: center;
 }
 
-.plan {
-	float: left;
+div.plan {	
+	display: inline-block;	
 	width: 150px;
 	margin: 20px 2px;
 	padding: 15px 25px;
@@ -24,6 +25,18 @@
 	border: 5px solid #000000;
 	border-color: rgba(0, 0, 0, 0.8);
 	border-radius: 5px;
+}
+
+ul.plans {
+	display: inline-block;
+	text-align:center;
+	width: 900px;
+	
+}
+
+li.plan {
+	display: inline-block;
+	text-align:center;	
 }
 
 .plan-title {
