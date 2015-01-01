@@ -3,7 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+
+
+
 <div class="plans">
+<ul class ="plans">
+<li class = "plan">
     <div class="plan">
       <h3 class="plan-title">Personal</h3>
       <p class="plan-price">150€<span class="plan-unit">any</span></p>
@@ -14,6 +19,8 @@
       </ul>
       <a href="#" class="plan-button">Comprar</a>
     </div>
+    </li>
+<li class = "plan">
     <div class="plan plan-highlight">
       <p class="plan-recommended">Recommended</p>
       <h3 class="plan-title">Professional</h3>
@@ -25,6 +32,8 @@
       </ul>
       <a href="#" class="plan-button">Comprar</a>
     </div>
+    </li>
+    <li class="plan">
     <div class="plan">
       <h3 class="plan-title">Reseller</h3>
       <p class="plan-price">1000€ <span class="plan-unit">any</span></p>
@@ -35,6 +44,7 @@
       </ul>
       <a href="#" class="plan-button">Comprar</a>
     </div>
-
+    </li>
+</ul>
   </div>
 

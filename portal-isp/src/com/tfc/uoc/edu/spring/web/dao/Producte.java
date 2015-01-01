@@ -1,8 +1,12 @@
 package com.tfc.uoc.edu.spring.web.dao;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -10,66 +14,56 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="offers")
-public class Producte {
+@Table(name = "productes")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipus", discriminatorType = DiscriminatorType.STRING)
+public abstract class Producte {
 
-	
 	@Id
 	@GeneratedValue
 	private int id;
+
+	@NotNull
+	@Size(min = 2, max = 20, groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
+	private String codi;
+
+	@NotNull
+	@Size(min = 2, groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
+	private String nom;
+
+	@NotNull
+	@Size(max = 100, groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
+	private String descripcio;
+
+	@NotNull
+	private float preu;
 	
 	@NotNull
-	@Size(min=20, max=255,groups={PersistenceValidationGroup.class, FormValidationGroup.class})	
-	private String text;
+	private boolean actiu;
 
-	@ManyToOne
-	@JoinColumn(name="username")
-	private User user;
-	
+
 	public Producte() {
-		this.user = new User();	
+
 	}
 
-	public Producte(User user, String text) {
-		this.user  = user;		
-		this.text = text;
+	public Producte(String codi, String nom, String descripcio, float preu) {	
+		this.codi = codi;
+		this.nom = nom;
+		this.descripcio = descripcio;
+		this.preu = preu;
 	}
-
-	public Producte(int id, User user, String text) {
-		this.id = id;
-		this.user = user;		
-		this.text = text;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
+	
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((text == null) ? 0 : text.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((codi == null) ? 0 : codi.hashCode());
 		return result;
-	}
-	
-	public String getUsername() {
-		return user.getUsername();
 	}
 
 	@Override
@@ -81,25 +75,58 @@ public class Producte {
 		if (getClass() != obj.getClass())
 			return false;
 		Producte other = (Producte) obj;
-		if (text == null) {
-			if (other.text != null)
+		if (codi == null) {
+			if (other.codi != null)
 				return false;
-		} else if (!text.equals(other.text))
-			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
+		} else if (!codi.equals(other.codi))
 			return false;
 		return true;
 	}
 
-	public User getUser() {
-		return user;
+	public String getCodi() {
+		return codi;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setCodi(String codi) {
+		this.codi = codi;
+	}
+
+	public float getPreu() {
+		return preu;
+	}
+
+	public void setPreu(float preu) {
+		this.preu = preu;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+
+	public String getDescripcio() {
+		return descripcio;
+	}
+
+	public void setDescripcio(String descripcio) {
+		this.descripcio = descripcio;
+	}
+
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	public boolean isActiu() {
+		return actiu;
+	}
+
+	public void setActiu(boolean actiu) {
+		this.actiu = actiu;
 	}
 
 

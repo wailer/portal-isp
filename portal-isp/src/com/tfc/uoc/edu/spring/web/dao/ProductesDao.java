@@ -25,22 +25,17 @@ public class ProductesDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Producte> getProductes() {
+	public List<Producte> getProductes(boolean inactius) {
+		if(inactius) {
+			return session().createQuery("from Producte").list();
+		}
+		else {
 		Criteria criteria = session().createCriteria(Producte.class);
-		criteria.createAlias("user", "u").add(
-				Restrictions.eq("u.enabled", true));
+		criteria.add(Restrictions.eq("actiu",true));		
 		return criteria.list();
+		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Producte> getProductes(String username) {
-
-		Criteria criteria = session().createCriteria(Producte.class);
-		criteria.createAlias("user", "u");
-		criteria.add(Restrictions.eq("u.enabled", true));
-		criteria.add(Restrictions.eq("u.username", username));
-		return criteria.list();
-	}
 
 	public void saveOrUpdate(Producte producte) {
 		session().saveOrUpdate(producte);
@@ -53,13 +48,11 @@ public class ProductesDao {
 		return query.executeUpdate() == 1;
 	}
 
-	public Producte getProducte(int id) {
-		Criteria criteria = session().createCriteria(Producte.class);
-		criteria.createAlias("user", "u");
-		criteria.add(Restrictions.eq("u.enabled", true));
-		criteria.add(Restrictions.idEq(id));
-		return (Producte) criteria.uniqueResult();
 
+	public Producte getProducte(String codi) {
+		Criteria criteria = session().createCriteria(Producte.class);		
+		criteria.add(Restrictions.eq("codi", codi));
+		return (Producte) criteria.uniqueResult();		
 	}
 
 }
