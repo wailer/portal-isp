@@ -35,6 +35,32 @@ public class ProductesDao {
 		return criteria.list();
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Domini> getDominis(boolean inactius) {
+		if(inactius) {
+			return session().createQuery("from Domini").list();
+		}
+		else {
+		Criteria criteria = session().createCriteria(Domini.class);
+		criteria.add(Restrictions.eq("actiu",true));		
+		return criteria.list();
+		}
+
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Allotjament> getAllotjaments(boolean inactius) {
+		if(inactius) {
+			return session().createQuery("from Allotjament").list();
+		}
+		else {
+		Criteria criteria = session().createCriteria(Domini.class);
+		criteria.add(Restrictions.eq("actiu",true));		
+		return criteria.list();
+		}
+
+	}
 
 
 	public void saveOrUpdate(Producte producte) {
@@ -54,5 +80,14 @@ public class ProductesDao {
 		criteria.add(Restrictions.eq("codi", codi));
 		return (Producte) criteria.uniqueResult();		
 	}
+
+	public void delete(String codi) {
+		Query query = session().createQuery("delete from Producte where codi=:codi");
+		query.setString("codi", codi);
+		query.executeUpdate();		
+	}
+
+
+
 
 }

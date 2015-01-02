@@ -11,14 +11,9 @@ public class Domini extends Producte {
 
 	private String extensio;
 
-	public Domini(String extensio) {
-		super();
-		this.extensio = extensio;
-	}
-
 	
-	public Domini(String codi, String nom, String descripcio, float preu, String extensio) {
-		super(codi,nom,descripcio, preu);
+	public Domini(String codi, String nom, String descripcio, float preu, boolean actiu, String extensio) {
+		super(codi,nom,descripcio, preu, actiu);
 		this.extensio = extensio;
 	}
 	
