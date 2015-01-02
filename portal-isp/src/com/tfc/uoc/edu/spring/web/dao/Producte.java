@@ -49,11 +49,12 @@ public abstract class Producte {
 
 	}
 
-	public Producte(String codi, String nom, String descripcio, float preu) {	
+	public Producte(String codi, String nom, String descripcio, float preu, boolean actiu) {	
 		this.codi = codi;
 		this.nom = nom;
 		this.descripcio = descripcio;
 		this.preu = preu;
+		this.actiu = actiu;
 	}
 	
 	
