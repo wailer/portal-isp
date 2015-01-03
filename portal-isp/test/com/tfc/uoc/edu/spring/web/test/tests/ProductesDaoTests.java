@@ -193,6 +193,20 @@ public class ProductesDaoTests {
 		
 		Domini retrieved = (Domini) ProductesDao.getProducte(domini3.getCodi());
 		assertEquals("Retrieved offer should be updated.", domini3, retrieved);
+		
+		ProductesDao.saveOrUpdate(allotjament1);
+		ProductesDao.saveOrUpdate(allotjament2);
+		ProductesDao.saveOrUpdate(allotjament3);
+		ProductesDao.saveOrUpdate(allotjament4);
+		ProductesDao.saveOrUpdate(allotjament5);
+		ProductesDao.saveOrUpdate(allotjament6);
+		
+		allotjament4.setDescripcio("Descripció actualitzada per aquest allotjament");
+		
+		Allotjament retrieved2 = (Allotjament) ProductesDao.getProducte(allotjament4.getCodi());
+		assertEquals("Retrieved offer should be updated.", allotjament4, retrieved2);
+		
+		
 	}
 
 
