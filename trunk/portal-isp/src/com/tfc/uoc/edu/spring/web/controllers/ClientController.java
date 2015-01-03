@@ -15,53 +15,53 @@ import com.tfc.uoc.edu.spring.web.service.ProductesService;
 import com.tfc.uoc.edu.spring.web.service.UsersService;
 
 @Controller
-public class AdminController {
+public class ClientController {
 
-	private static Logger logger = Logger.getLogger(AdminController.class);
+	private static Logger logger = Logger.getLogger(ClientController.class);
 
 	@Autowired
 	private ProductesService productesService;
 	@Autowired
 	private UsersService usersService;
 
-	@RequestMapping("/admin")
+	@RequestMapping("/client")
 	public String showAdmin(Model model, Principal principal) {
 		List<Producte> productes = productesService.getProductes(true);
 		model.addAttribute("productes", productes);
 		List<User> users = usersService.getUsers();
 		model.addAttribute("users", users);
 
-		return "admin";
+		return "client";
 	}
 
-	@RequestMapping("/admin-dominis")
+	@RequestMapping("/client-dominis")
 	public String showAdminDominis(Model model, Principal principal) {
 		List<Producte> productes = productesService.getProductes(true);
 		model.addAttribute("productes", productes);
 		List<User> users = usersService.getUsers();
 		model.addAttribute("users", users);
 		
-		return "admin-dominis";
+		return "client-dominis";
 	}
 
-	@RequestMapping("/admin-allotjaments")
+	@RequestMapping("/client-allotjaments")
 	public String showAdminAllotjaments(Model model, Principal principal) {
 		List<Producte> productes = productesService.getProductes(true);
 		model.addAttribute("productes", productes);
 		List<User> users = usersService.getUsers();
 		model.addAttribute("users", users);
 		
-		return "admin-allotjaments";
+		return "client-allotjaments";
 	}
 	
-	@RequestMapping("/admin-usuaris")
+	@RequestMapping("/client-perfil")
 	public String showAdminUsuaris(Model model, Principal principal) {
 		List<Producte> productes = productesService.getProductes(true);
 		model.addAttribute("productes", productes);
 		List<User> users = usersService.getUsers();
-		model.addAttribute("usuaris", users);
+		model.addAttribute("users", users);
 		
-		return "admin-usuaris";
+		return "client-perfil";
 	}
 	
 	

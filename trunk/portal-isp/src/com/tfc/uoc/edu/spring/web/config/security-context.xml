@@ -11,7 +11,7 @@
 			<security:jdbc-user-service
 				data-source-ref="dataSource"
 				authorities-by-username-query='select username, authority from users where binary username = ?'
-				users-by-username-query='select username, password, enabled from users where binary username = ?'
+				users-by-username-query='select username, password, actiu from users where binary username = ?'
 				id="jdbcUserService" />
 			<security:password-encoder hash="sha-256"
 				ref="passwordEncoder">
@@ -23,8 +23,18 @@
 	<security:http use-expressions="true">
 		<security:intercept-url pattern="/admin"
 			access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/editar-productes"
+		<security:intercept-url pattern="/admin-dominis"
 			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin-allotjaments"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin-usuaris"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/client"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/client-dominis"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/client-allotjaments"
+			access="isAuthenticated()" />
 		<security:intercept-url pattern="/crearproducte"
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/productecreat"

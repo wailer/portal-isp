@@ -22,11 +22,11 @@
 					href="<c:url value='/j_spring_security_logout'/>">Sortir</a>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_USER')">
-				<a class="button button-purple " href="/client">Àrea
+				<a class="button button-purple " href="<c:url value='/client'/>">Àrea
 					Client</a>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<a class="button button-purple" href="/admin">Administració</a>
+				<a class="button button-purple" href="<c:url value='/admin'/>">Administració</a>
 			</sec:authorize>			
 		</div>
 	

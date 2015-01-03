@@ -8,61 +8,121 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-
-
-
-
-
-
-
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.tfc.uoc.edu.spring.web.validation.ValidEmail;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
-	@NotBlank(groups={PersistenceValidationGroup.class,FormValidationGroup.class})
-	@Size(min=5,max=15,message="", groups={PersistenceValidationGroup.class,FormValidationGroup.class})
-	@Pattern(regexp="^\\w{5,}$", groups={PersistenceValidationGroup.class,FormValidationGroup.class})
+	@NotBlank(groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
+	@Size(min = 5, max = 15, message = "", groups = {
+			PersistenceValidationGroup.class, FormValidationGroup.class })
+	@Pattern(regexp = "^\\w{5,}$", groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
 	@Id
-	@Column(name="username")
+	@Column(name = "username")
 	private String username;
-	
-	
-	@NotBlank(groups={PersistenceValidationGroup.class,FormValidationGroup.class})
-	@Pattern(regexp="^\\S+$",groups={PersistenceValidationGroup.class,FormValidationGroup.class})
-	@Size(min=8, max=15, groups={FormValidationGroup.class})
+
+	@NotBlank(groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
+	@Pattern(regexp = "^\\S+$", groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
+	@Size(min = 5, max = 15, groups = { FormValidationGroup.class })
 	private String password;
-	
+
 	private boolean enabled = false;
-	
+
 	private String authority;
-	
-	@ValidEmail(groups={PersistenceValidationGroup.class,FormValidationGroup.class})
+
+	@ValidEmail(groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
 	private String email;
+
+	@NotBlank
+	@Size(min = 2, max = 20, groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
+	private String nom;
+
+	@NotBlank
+	@Size(min = 5, groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
+	private String cognoms;
+
+	@NotBlank
+	@Size(min = 9, groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
+	private String dni;
+
+	@NotBlank
+	@Size(min = 9, groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
+	private String telefon;
 	
 	@NotBlank
-	@Size(min=5,max=15, groups={PersistenceValidationGroup.class,FormValidationGroup.class})
-	private String name;
+	@Size(min = 5, groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
+	private String direccio;
 	
+	@NotBlank
+	@Size(min = 5, groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
+	private String codiPostal;
+	
+	@NotBlank
+	@Size(min = 2, groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class })
+	private String poblacio;
+	
+	private String empresa;
+
+	public User() {
+		
+	}
+
+	public User(String username, String nom, String password, String email,
+			boolean enabled, String authority) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.authority = authority;
+		this.email = email;
+		this.nom = nom;
+	}
+
+	
+	public User(String username, String password, boolean enabled,
+			String authority, String email, String nom, String cognoms,
+			String dni, String telefon, String direccio, String codiPostal,
+			String poblacio, String empresa) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.authority = authority;
+		this.email = email;
+		this.nom = nom;
+		this.cognoms = cognoms;
+		this.dni = dni;
+		this.telefon = telefon;
+		this.direccio = direccio;
+		this.codiPostal = codiPostal;
+		this.poblacio = poblacio;
+		this.empresa = empresa;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((authority == null) ? 0 : authority.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + (enabled ? 1231 : 1237);
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
 				+ ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -73,23 +133,6 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (authority == null) {
-			if (other.authority != null)
-				return false;
-		} else if (!authority.equals(other.authority))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (enabled != other.enabled)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
@@ -98,29 +141,24 @@ public class User {
 		return true;
 	}
 
-
-
-	public String getName() {
-		return name;
+	public String getCodiPostal() {
+		return codiPostal;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCodiPostal(String codiPostal) {
+		this.codiPostal = codiPostal;
 	}
 
-	public User() {
-		
+
+	public String getPoblacio() {
+		return poblacio;
 	}
 
-	public User(String username, String name, String password, String email, boolean enabled, String authority) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.enabled = enabled;
-		this.authority = authority;
-		this.email = email;
-		this.name = name;
+
+	public void setPoblacio(String poblacio) {
+		this.poblacio = poblacio;
 	}
+
 
 	public String getUsername() {
 		return username;
@@ -138,14 +176,6 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
 	public String getAuthority() {
 		return authority;
 	}
@@ -160,6 +190,64 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}	
+
+	public boolean isEnabled() {
+		return enabled;
 	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getCognoms() {
+		return cognoms;
+	}
+
+	public void setCognoms(String cognoms) {
+		this.cognoms = cognoms;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public String getTelefon() {
+		return telefon;
+	}
+
+	public void setTelefon(String telefon) {
+		this.telefon = telefon;
+	}
+
+
+	public String getDireccio() {
+		return direccio;
+	}
+
+	public void setDireccio(String direccio) {
+		this.direccio = direccio;
+	}
+
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+
 
 }

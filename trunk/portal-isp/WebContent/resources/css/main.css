@@ -1,4 +1,4 @@
-@CHARSET "UTF-8";
+voto @CHARSET "UTF-8";
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video
 	{
@@ -55,10 +55,9 @@ input,textarea,select,button,label {
 
 body {
 	font: 12px/21px "Lucida Grande", Verdana, Arial, sans-serif;
-	/*color: #dfdfdf;
-	background: #3c3b40;*/
-	color: #404040 ;
-	background: #eeebe4  
+	color: #dfdfdf;
+	background: #3c3b40;
+
 }
 
 
@@ -71,7 +70,7 @@ a:hover {
 	color: white;
 }
 
-input[type=text],input[type=email],input[type=url],input[type=search],textarea
+input[type=text],input[type=email],input[type=url],input[type=search],textarea,input[type=password]
 	{
 	display: inline-block;
 	vertical-align: top;
@@ -93,7 +92,7 @@ input[type=text],input[type=email],input[type=url],input[type=search],textarea
 	transition: 0.1s ease-out;
 }
 
-input[type=text]:focus,input[type=email]:focus,input[type=url]:focus,input[type=search]:focus,textarea:focus
+input[type=text]:focus,input[type=email]:focus,input[type=url]:focus,input[type=search]:focus,textarea:focus,input[type=password]:focus
 	{
 	color: #dfdfdf;
 	background: #3d3d3d;
