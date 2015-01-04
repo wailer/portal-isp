@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -14,8 +14,8 @@
 	}
 
 	/**
-	 * El formulari d'Spring crea un element span per cada camp amb problemes, i aquest conté la llista d'errors de validació
-	 * Per tant , l'únic que hem de fer és aplicar-hi un estil per destacar l'error.
+	 * El formulari d'Spring crea un element span per cada camp amb problemes, i aquest contÃ© la llista d'errors de validaciÃ³
+	 * Per tant , l'Ãºnic que hem de fer Ã©s aplicar-hi un estil per destacar l'error.
 	 */
 	function mostraErrors() {
 
@@ -67,6 +67,11 @@
 		if ($("#empresa\\.errors").length > 0) {
 			$("#empresa\\.errors").addClass("entrada-error");
 			$("a#empresa").addClass("invalid");
+		}
+		
+		if ($("#password\\.errors").length > 0) {
+			$("#password\\.errors").addClass("entrada-error");
+			$("a#password").addClass("invalid");
 		}
 
 	}

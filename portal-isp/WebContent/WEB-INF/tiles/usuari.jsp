@@ -2,7 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <c:set var="estil-error" value="entrada-error" scope="page" />
 
@@ -109,7 +110,23 @@
 			<div class="entrada-pista">
 				<sf:errors path="empresa"></sf:errors>
 			</div>
+		</div>		
+
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<div class="entrada-formulari">
+			<div class="entrada-nom">
+				<a class="tag tag-blue">Rol</a> <a id="rol">
+				 <sf:select class="select" path="authority">
+						<sf:option value="ROLE_USER" label="Usuari" />
+                  		<sf:option value="ROLE_ADMIN" label="Administrador" />
+                  </sf:select>
+                  </a>
+			</div>
+			<div class="entrada-pista">
+				<sf:errors path="empresa"></sf:errors>
+			</div>
 		</div>
+		</sec:authorize>
 
 		<div class="entrada-formulari">
 			<div class="entrada-nom">
@@ -123,9 +140,9 @@
 
 		<div class="entrada-formulari">
 			<div class="entrada-nom">
-				<a class="tag tag-blue">Confirmar Password</a><a id="confirmpassword"><input
-					id="confirmpassword" name="confirmpassword" class="control"
-					type="password" /></a>
+				<a class="tag tag-blue">Confirmar Password</a><a
+					id="confirmpassword"><input id="confirmpassword"
+					name="confirmpassword" class="control" type="password" /></a>
 			</div>
 			<div class="entrada-pista">
 				<div id="passwordMatch"></div>

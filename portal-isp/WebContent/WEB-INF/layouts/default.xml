@@ -37,10 +37,10 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/login.jsp"></put-attribute>
 	</definition>
 
-	<definition name="nouusuari" extends='portal.base'>
-		<put-attribute name="includes" value="/WEB-INF/js/nouusuari.jsp"></put-attribute>
+	<definition name="usuari" extends='portal.base'>
+		<put-attribute name="includes" value="/WEB-INF/js/form-usuari.jsp"></put-attribute>
 		<put-attribute name="title" value="Nou Usuari"></put-attribute>
-		<put-attribute name="content" value="/WEB-INF/tiles/nouusuari.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/usuari.jsp"></put-attribute>
 	</definition>
 
 	<definition name="crearproducte" extends='portal.base'>
@@ -69,10 +69,6 @@
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/error/errorpermisos.jsp"></put-attribute>
 	</definition>
-
-
-
-
 
 	<definition name="producteeliminat" extends='portal.base'>
 		<put-attribute name="title" value="Producte eliminat"></put-attribute>
