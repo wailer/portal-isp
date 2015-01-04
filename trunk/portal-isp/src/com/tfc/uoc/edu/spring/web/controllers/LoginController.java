@@ -32,11 +32,11 @@ public class LoginController {
 		return "loggedout";
 	}
 
-	@RequestMapping("/nouusuari")
-	public String showNouUsuari(Model model) {
+	@RequestMapping("/usuari")
+	public String showUsuari(Model model) {
 
 		model.addAttribute("user", new User());
-		return "nouusuari";
+		return "usuari";
 	}
 
 	@RequestMapping(value = "/crearusuari", method = RequestMethod.POST)
@@ -44,7 +44,7 @@ public class LoginController {
 			BindingResult result) {
 
 		if (result.hasErrors()) {
-			return "nouusuari";
+			return "usuari";
 		}
 
 		user.setAuthority("ROLE_USER");
@@ -53,7 +53,7 @@ public class LoginController {
 		if (usersService.exists(user.getUsername())) {
 			System.out.println("Caught duplicate username");
 			result.rejectValue("username", "DuplicateKey.user.username");
-			return "nouusuari";
+			return "usuari";
 		}
 
 		usersService.create(user);

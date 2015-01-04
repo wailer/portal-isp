@@ -15,7 +15,7 @@
 			</sec:authorize>
 			<sec:authorize access="!isAuthenticated()">
 				<a class="button button-blue"
-					href="<c:url value='/nouusuari'/>">Registre</a>
+					href="<c:url value='/usuari'/>">Registre</a>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<a class="button button-red"

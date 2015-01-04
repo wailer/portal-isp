@@ -50,7 +50,7 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/allotjaments"
 			access="permitAll" />
-		<security:intercept-url pattern="/nouusuari"
+		<security:intercept-url pattern="/usuari"
 			access="permitAll" />
 		<security:intercept-url pattern="/crearusuari"
 			access="permitAll" />
