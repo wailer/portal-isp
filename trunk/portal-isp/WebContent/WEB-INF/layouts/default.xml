@@ -91,6 +91,10 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/allotjaments.jsp"></put-attribute>
 	</definition>
 
+	<definition name="credits" extends='portal.base'>
+		<put-attribute name="title" value="Credits"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/credits.jsp"></put-attribute>
+	</definition>
 
 	<!-- PANELL ADMIN -->
 
@@ -100,18 +104,18 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/admin/home.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin-dominis" extends='portal.base'>
+	<definition name="admin-dominis" extends='admin.base'>
 		<put-attribute name="title" value="Admin"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/admin/dominis.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin-allotjaments" extends='portal.base'>
+	<definition name="admin-allotjaments" extends='admin.base'>
 		<put-attribute name="title" value="Admin"></put-attribute>
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/admin/allotjaments.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin-usuaris" extends='portal.base'>
+	<definition name="admin-usuaris" extends='admin.base'>
 		<put-attribute name="title" value="Admin"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/admin/usuaris.jsp"></put-attribute>
 	</definition>
@@ -124,12 +128,12 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/admin/home.jsp"></put-attribute>
 	</definition>
 
-	<definition name="client-dominis" extends='portal.base'>
+	<definition name="client-dominis" extends='admin.base'>
 		<put-attribute name="title" value="Admin"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/admin/dominis.jsp"></put-attribute>
 	</definition>
 
-	<definition name="client-allotjaments" extends='portal.base'>
+	<definition name="client-allotjaments" extends='admin.base'>
 		<put-attribute name="title" value="Admin"></put-attribute>
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/admin/allotjaments.jsp"></put-attribute>

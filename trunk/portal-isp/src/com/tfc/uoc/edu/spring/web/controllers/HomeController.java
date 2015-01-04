@@ -52,5 +52,10 @@ public class HomeController {
 		return "allotjaments";
 	}
 	
+	@RequestMapping("/credits")
+	public String showCredits(Model model, Principal principal) {	
+		logger.info("Showing credits....");
+		return "credits";
+	}
 
 }
