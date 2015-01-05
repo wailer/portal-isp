@@ -153,7 +153,7 @@
 
 		<div class="entrada-formulari">
 			<div class="entrada-nom">
-				<input class="tag tag-teal" value="Enviar" type="submit" />
+				<input id="enviar" class="tag tag-teal" value="Enviar" type="submit" />
 			</div>
 			<div class="entrada-pista"></div>
 		</div>

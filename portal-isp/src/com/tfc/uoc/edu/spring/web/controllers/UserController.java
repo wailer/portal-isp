@@ -41,9 +41,6 @@ public class UserController {
 		return "loggedout";
 	}
 
-	/**
-	 * Registre d'un nou usuari
-	 */
 	@RequestMapping(value = "/usuari", method = RequestMethod.GET)
 	public String showUsuari(Model model) {
 		model.addAttribute("user", new User());
@@ -94,7 +91,7 @@ public class UserController {
 			BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
-			return "usuari";
+			return "modificar-password";
 		}
 
 		// En aquest cas recuperem totes les dades de l'usuari a db i només
