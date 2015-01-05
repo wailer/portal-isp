@@ -6,13 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.FormValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PasswordEditFormValidationGroup;
 import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PersistenceValidationGroup;
 import com.tfc.uoc.edu.spring.web.validation.ValidEmail;
 
@@ -27,7 +27,7 @@ public class User {
 
 	@NotBlank(groups = { PersistenceValidationGroup.class,
 			FormValidationGroup.class })
-	@Size(min = 5, max = 15, message = "", groups = {
+	@Size(min = 5, max = 15,  groups = {
 			PersistenceValidationGroup.class, FormValidationGroup.class })
 	@Pattern(regexp = "^\\w{5,}$", groups = { PersistenceValidationGroup.class,
 			FormValidationGroup.class })
@@ -38,7 +38,7 @@ public class User {
 			FormValidationGroup.class })
 	@Pattern(regexp = "^\\S+$", groups = { PersistenceValidationGroup.class,
 			FormValidationGroup.class })
-	@Size(min = 5, max = 15, groups = { FormValidationGroup.class })
+	@Size(min = 5, max = 15, groups = { FormValidationGroup.class , PasswordEditFormValidationGroup.class})
 	private String password;
 
 	private boolean enabled = false;
@@ -54,9 +54,7 @@ public class User {
 			FormValidationGroup.class })
 	private String nom;
 
-	@NotBlank
-	@Size(min = 5, groups = { PersistenceValidationGroup.class,
-			FormValidationGroup.class })
+	@NotBlank	
 	private String cognoms;
 
 	@NotBlank

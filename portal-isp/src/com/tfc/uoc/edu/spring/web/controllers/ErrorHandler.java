@@ -20,4 +20,16 @@ public class ErrorHandler {
 		return "errorpermisos";
 	}	
 	
+	@ExceptionHandler(ClassNotFoundException.class)
+	public String handleClassNotFoundException(ClassNotFoundException ex) {
+		ex.printStackTrace();
+		return "error";
+	}	
+	
+	@ExceptionHandler(NullPointerException.class)
+	public String handleNullPointerException(NullPointerException ex) {
+		ex.printStackTrace();
+		return "error";
+	}	
+	
 }
