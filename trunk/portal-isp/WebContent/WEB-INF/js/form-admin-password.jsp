@@ -9,7 +9,8 @@
 	function onLoad() {
 		$("input#password").keyup(checkPasswordsMatch);
 		$("input#confirmpassword").keyup(checkPasswordsMatch);
-		$("#enviar").submit(canSubmit);
+		$("#user").submit(canSubmit); 
+		
 		$(mostraErrors());
 	}
 
@@ -28,10 +29,11 @@
 
 	function canSubmit() {
 		var password = $("input#password").val();
-		var confirmpassword = $("input#confirmpass").val();
+		var confirmpassword = $("input#confirmpassword").val();
 
 		if (password != confirmpassword) {
 			alert("<fmt:message key='UnmatchedPasswords.user.password' />")
+			
 			return false;
 		} else {
 			return true;
