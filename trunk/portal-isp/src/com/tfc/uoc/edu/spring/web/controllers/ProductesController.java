@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.tfc.uoc.edu.spring.web.dao.FormValidationGroup;
 import com.tfc.uoc.edu.spring.web.dao.Producte;
+import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.FormValidationGroup;
 import com.tfc.uoc.edu.spring.web.service.ProductesService;
 
 @Controller

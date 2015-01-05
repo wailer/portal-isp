@@ -48,12 +48,6 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/crearproducte.jsp"></put-attribute>
 	</definition>
 
-
-	<definition name="errordb" extends='portal.base'>
-		<put-attribute name="title" value="Error BD"></put-attribute>
-		<put-attribute name="content" value="/WEB-INF/tiles/error/errordb.jsp"></put-attribute>
-	</definition>
-
 	<definition name="usuaricreat" extends='portal.base'>
 		<put-attribute name="title" value="Usuari creat correctament"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/usuaricreat.jsp"></put-attribute>
@@ -62,12 +56,6 @@
 	<definition name="productecreat" extends='portal.base'>
 		<put-attribute name="title" value="Producte creat correctament"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/productecreat.jsp"></put-attribute>
-	</definition>
-
-	<definition name="errorpermisos" extends='portal.base'>
-		<put-attribute name="title" value="Accés denegat"></put-attribute>
-		<put-attribute name="content"
-			value="/WEB-INF/tiles/error/errorpermisos.jsp"></put-attribute>
 	</definition>
 
 	<definition name="producteeliminat" extends='portal.base'>
@@ -96,6 +84,24 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/credits.jsp"></put-attribute>
 	</definition>
 
+<!-- ERRORS -->
+
+	<definition name="errorpermisos" extends='portal.base'>
+		<put-attribute name="title" value="Accés denegat"></put-attribute>
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/error/errorpermisos.jsp"></put-attribute>
+	</definition>
+
+	<definition name="errordb" extends='portal.base'>
+		<put-attribute name="title" value="Error BD"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/error/errordb.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="error" extends='portal.base'>
+		<put-attribute name="title" value="Error"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/error/error.jsp"></put-attribute>
+	</definition>
+
 	<!-- PANELL ADMIN -->
 
 
@@ -118,6 +124,26 @@
 	<definition name="admin-usuaris" extends='admin.base'>
 		<put-attribute name="title" value="Admin"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/admin/usuaris.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin-usuari" extends='admin.base'>
+		<put-attribute name="title" value="Admin"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/admin/usuari.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin-password" extends='admin.base'>
+		<put-attribute name="title" value="Admin"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/admin/password.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin-error" extends='admin.base'>
+		<put-attribute name="title" value="Admin"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/error/error.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin-ok" extends='admin.base'>
+		<put-attribute name="title" value="Admin"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/admin/ok.jsp"></put-attribute>
 	</definition>
 
 

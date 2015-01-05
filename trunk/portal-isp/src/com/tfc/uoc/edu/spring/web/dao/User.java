@@ -2,20 +2,28 @@ package com.tfc.uoc.edu.spring.web.dao;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.FormValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PersistenceValidationGroup;
 import com.tfc.uoc.edu.spring.web.validation.ValidEmail;
 
 @Entity
 @Table(name = "users")
 public class User {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;
 
 	@NotBlank(groups = { PersistenceValidationGroup.class,
 			FormValidationGroup.class })
@@ -23,8 +31,7 @@ public class User {
 			PersistenceValidationGroup.class, FormValidationGroup.class })
 	@Pattern(regexp = "^\\w{5,}$", groups = { PersistenceValidationGroup.class,
 			FormValidationGroup.class })
-	@Id
-	@Column(name = "username")
+	@Column(name = "username", unique = true)
 	private String username;
 
 	@NotBlank(groups = { PersistenceValidationGroup.class,
@@ -61,45 +68,32 @@ public class User {
 	@Size(min = 9, groups = { PersistenceValidationGroup.class,
 			FormValidationGroup.class })
 	private String telefon;
-	
+
 	@NotBlank
 	@Size(min = 5, groups = { PersistenceValidationGroup.class,
 			FormValidationGroup.class })
 	private String direccio;
-	
+
 	@NotBlank
 	@Size(min = 5, groups = { PersistenceValidationGroup.class,
 			FormValidationGroup.class })
 	private String codiPostal;
-	
+
 	@NotBlank
 	@Size(min = 2, groups = { PersistenceValidationGroup.class,
 			FormValidationGroup.class })
 	private String poblacio;
-	
+
 	private String empresa;
 
 	public User() {
-		
+
 	}
 
-	public User(String username, String nom, String password, String email,
-			boolean enabled, String authority) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.enabled = enabled;
-		this.authority = authority;
-		this.email = email;
-		this.nom = nom;
-	}
-
-	
 	public User(String username, String password, boolean enabled,
 			String authority, String email, String nom, String cognoms,
 			String dni, String telefon, String direccio, String codiPostal,
-			String poblacio, String empresa) {
-		super();
+			String poblacio, String empresa) {	
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
@@ -114,7 +108,7 @@ public class User {
 		this.poblacio = poblacio;
 		this.empresa = empresa;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -149,16 +143,13 @@ public class User {
 		this.codiPostal = codiPostal;
 	}
 
-
 	public String getPoblacio() {
 		return poblacio;
 	}
 
-
 	public void setPoblacio(String poblacio) {
 		this.poblacio = poblacio;
 	}
-
 
 	public String getUsername() {
 		return username;
@@ -190,9 +181,13 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}	
+	}
 
 	public boolean isEnabled() {
+		return enabled;
+	}
+	
+	public boolean getEnabled() {
 		return enabled;
 	}
 
@@ -232,7 +227,6 @@ public class User {
 		this.telefon = telefon;
 	}
 
-
 	public String getDireccio() {
 		return direccio;
 	}
@@ -249,5 +243,24 @@ public class User {
 		this.empresa = empresa;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password="
+				+ password + ", enabled=" + enabled + ", authority="
+				+ authority + ", email=" + email + ", nom=" + nom
+				+ ", cognoms=" + cognoms + ", dni=" + dni + ", telefon="
+				+ telefon + ", direccio=" + direccio + ", codiPostal="
+				+ codiPostal + ", poblacio=" + poblacio + ", empresa="
+				+ empresa + "]";
+	}
 
 }

@@ -87,3 +87,7 @@ a.header-link {
     float: left;
     overflow: hidden;
 }
+
+a.salutacio {
+	vertical-align: bottom;
+}

@@ -34,4 +34,10 @@ public class ErrorController {
 		return "errordb";
 	}
 
+	@RequestMapping("/error")
+	public String showError(Model model, Principal principal) {
+		return "error";
+	}
+	
+
 }
