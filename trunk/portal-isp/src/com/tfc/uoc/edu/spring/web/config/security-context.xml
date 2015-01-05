@@ -31,6 +31,10 @@
 			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/admin-usuari"
 			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin-modificar-usuari"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin-modificar-password"
+			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/admin-password"
 			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/client"
@@ -38,6 +42,14 @@
 		<security:intercept-url pattern="/client-dominis"
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/client-allotjaments"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/client-perfil"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/client-modificar-perfil"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/client-modificar-password"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/client-password"
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/crearproducte"
 			access="isAuthenticated()" />
@@ -48,6 +60,8 @@
 		<security:intercept-url pattern="/docrearproducte"
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/modificar-password"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/modificar-usuari"
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/productes"
@@ -76,7 +90,7 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/credits"
 			access="permitAll" />
-		<security:intercept-url pattern="/modificar-usuari"
+		<security:intercept-url pattern="/home"
 			access="permitAll" />
 		<security:intercept-url pattern="/**" access="denyAll" />
 		<security:form-login login-page="/login"

@@ -5,11 +5,25 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-<c:set var="estil-error" value="entrada-error" scope="page" />
+<!-- Variables dinàmiques en funció del rol de l'usuari -->
+
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+	<c:set var="formAction"
+		value="${pageContext.request.contextPath}/admin-modificar-password"
+		scope="page" />	
+</sec:authorize>
+
+<sec:authorize access="hasRole('ROLE_USER')">
+	<c:set var="formAction"
+		value="${pageContext.request.contextPath}/client-modificar-password"
+		scope="page" />	
+</sec:authorize>
+
+<!--  Formulari  -->
 
 <div class="formulari">
 	<sf:form method="post"
-		action="${pageContext.request.contextPath}/modificar-password"
+		action="${formAction}"
 		commandName="user">
 
 		<sf:hidden path="id"/>
@@ -37,7 +51,7 @@
 
 		<div class="entrada-formulari">
 			<div class="entrada-nom">
-				<input class="tag tag-teal" value="Enviar" type="submit" />
+				<input id="enviar" class="tag tag-teal" value="Enviar" type="submit" />
 			</div>
 			<div class="entrada-pista"></div>
 		</div>

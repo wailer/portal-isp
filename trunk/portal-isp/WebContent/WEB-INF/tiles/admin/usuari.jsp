@@ -5,28 +5,43 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-<c:set var="estil-error" value="entrada-error" scope="page" />
+<!-- Variables dinàmiques en funció del rol de l'usuari -->
+
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+	<c:set var="formAction"
+		value="${pageContext.request.contextPath}/admin-modificar-usuari"
+		scope="page" />
+	<c:set var="urlPassword"
+		value="/admin-password?username=${user.username}" scope="page" />
+</sec:authorize>
+
+<sec:authorize access="hasRole('ROLE_USER')">
+	<c:set var="formAction"
+		value="${pageContext.request.contextPath}/client-modificar-perfil"
+		scope="page" />
+	<c:set var="urlPassword" value="/client-password" scope="page" />
+</sec:authorize>
+
+<!--  Formulari  -->
 
 <div class="formulari">
-	<sf:form method="post"
-		action="${pageContext.request.contextPath}/modificar-usuari"
-		commandName="user">
+	<sf:form method="post" action="${formAction}" commandName="user">
 
 		<sf:hidden path="id" />
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<div class="entrada-formulari">
+				<div class="entrada-nom">
+					<a class="tag tag-blue">Habilitat?</a> <a
+						class="switch switch-square" id="enabled"> <sf:checkbox
+							path="enabled" label="enabled" data-on="SI" data-off="NO" />
 
-		<div class="entrada-formulari">
-			<div class="entrada-nom">
-				<a class="tag tag-blue">Habilitat?</a> <a
-					class="switch switch-square" id="enabled"> <sf:checkbox
-						path="enabled" label="enabled" data-on="SI" data-off="NO" />
-						
-				</a>
+					</a>
+				</div>
+				<div class="entrada-pista">
+					<sf:errors path="enabled"></sf:errors>
+				</div>
 			</div>
-			<div class="entrada-pista">
-				<sf:errors path="enabled"></sf:errors>
-			</div>
-		</div>
-
+		</sec:authorize>
 		<div class="entrada-formulari">
 			<div class="entrada-nom">
 				<a class="tag tag-blue">Usuari</a> <a id="username"><sf:input
@@ -145,9 +160,8 @@
 
 		<div class="entrada-formulari">
 			<div class="entrada-nom">
-				<input class="tag tag-teal" value="Enviar" type="submit" /> <a
-					class="tag tag-blue"
-					href="<c:url value='/admin-password?username=${user.username}'/>">Modificar
+				<input id="enviar" class="tag tag-teal" value="Enviar" type="submit" />
+				<a class="tag tag-blue" href="<c:url value='${urlPassword}'/>">Modificar
 					Password</a>
 			</div>
 			<div class="entrada-pista"></div>

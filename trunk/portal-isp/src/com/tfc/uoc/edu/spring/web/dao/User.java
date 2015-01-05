@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.FormValidationGroup;
 import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PasswordEditFormValidationGroup;
 import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PersistenceValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.UserEditFormValidationGroup;
 import com.tfc.uoc.edu.spring.web.validation.ValidEmail;
 
 @Entity
@@ -26,11 +27,11 @@ public class User {
 	private int id;
 
 	@NotBlank(groups = { PersistenceValidationGroup.class,
-			FormValidationGroup.class })
-	@Size(min = 5, max = 15,  groups = {
-			PersistenceValidationGroup.class, FormValidationGroup.class })
+			FormValidationGroup.class, UserEditFormValidationGroup.class })
+	@Size(min = 5, max = 15, groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class , UserEditFormValidationGroup.class})
 	@Pattern(regexp = "^\\w{5,}$", groups = { PersistenceValidationGroup.class,
-			FormValidationGroup.class })
+			FormValidationGroup.class , UserEditFormValidationGroup.class})
 	@Column(name = "username", unique = true)
 	private String username;
 
@@ -38,7 +39,8 @@ public class User {
 			FormValidationGroup.class })
 	@Pattern(regexp = "^\\S+$", groups = { PersistenceValidationGroup.class,
 			FormValidationGroup.class })
-	@Size(min = 5, max = 15, groups = { FormValidationGroup.class , PasswordEditFormValidationGroup.class})
+	@Size(min = 5, max = 15, groups = { FormValidationGroup.class,
+			PasswordEditFormValidationGroup.class })
 	private String password;
 
 	private boolean enabled = false;
@@ -51,35 +53,36 @@ public class User {
 
 	@NotBlank
 	@Size(min = 2, max = 20, groups = { PersistenceValidationGroup.class,
-			FormValidationGroup.class })
+			FormValidationGroup.class, UserEditFormValidationGroup.class })
 	private String nom;
 
-	@NotBlank	
+	@NotBlank(groups = { PersistenceValidationGroup.class,
+			FormValidationGroup.class, UserEditFormValidationGroup.class })
 	private String cognoms;
 
 	@NotBlank
 	@Size(min = 9, groups = { PersistenceValidationGroup.class,
-			FormValidationGroup.class })
+			FormValidationGroup.class, UserEditFormValidationGroup.class })
 	private String dni;
 
 	@NotBlank
 	@Size(min = 9, groups = { PersistenceValidationGroup.class,
-			FormValidationGroup.class })
+			FormValidationGroup.class, UserEditFormValidationGroup.class })
 	private String telefon;
 
 	@NotBlank
 	@Size(min = 5, groups = { PersistenceValidationGroup.class,
-			FormValidationGroup.class })
+			FormValidationGroup.class, UserEditFormValidationGroup.class })
 	private String direccio;
 
 	@NotBlank
 	@Size(min = 5, groups = { PersistenceValidationGroup.class,
-			FormValidationGroup.class })
+			FormValidationGroup.class, UserEditFormValidationGroup.class })
 	private String codiPostal;
 
 	@NotBlank
 	@Size(min = 2, groups = { PersistenceValidationGroup.class,
-			FormValidationGroup.class })
+			FormValidationGroup.class, UserEditFormValidationGroup.class })
 	private String poblacio;
 
 	private String empresa;
@@ -91,7 +94,7 @@ public class User {
 	public User(String username, String password, boolean enabled,
 			String authority, String email, String nom, String cognoms,
 			String dni, String telefon, String direccio, String codiPostal,
-			String poblacio, String empresa) {	
+			String poblacio, String empresa) {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
@@ -106,7 +109,7 @@ public class User {
 		this.poblacio = poblacio;
 		this.empresa = empresa;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -184,7 +187,7 @@ public class User {
 	public boolean isEnabled() {
 		return enabled;
 	}
-	
+
 	public boolean getEnabled() {
 		return enabled;
 	}
@@ -245,7 +248,6 @@ public class User {
 		return id;
 	}
 
-	
 	public void setId(int id) {
 		this.id = id;
 	}

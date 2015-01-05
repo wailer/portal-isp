@@ -29,7 +29,7 @@ public class HomeController {
 	@Autowired
 	private UsersService usersService;
 	
-	@RequestMapping("/")
+	@RequestMapping(value={"/","/home"})	
 	public String showHome(Model model, Principal principal) {	
 		logger.info("Showing home....");
 		List<Producte> productes = productesService.getProductes(false);
