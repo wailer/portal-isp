@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
@@ -59,7 +59,7 @@
 
 		<div class="entrada-formulari">
 			<div class="entrada-nom">
-				<a class="tag tag-blue">Correu Electrònic</a> <a id="email"><sf:input
+				<a class="tag tag-blue">Correu ElectrÃ²nic</a> <a id="email"><sf:input
 						name="email" path="email" type="text" /></a>
 			</div>
 			<div class="entrada-pista">
@@ -79,7 +79,7 @@
 
 		<div class="entrada-formulari">
 			<div class="entrada-nom">
-				<a class="tag tag-blue">Telèfon</a> <a id="telefon"><sf:input
+				<a class="tag tag-blue">TelÃ¨fon</a> <a id="telefon"><sf:input
 						name="telefon" path="telefon" type="text" /></a>
 			</div>
 			<div class="entrada-pista">
@@ -89,7 +89,7 @@
 
 		<div class="entrada-formulari">
 			<div class="entrada-nom">
-				<a class="tag tag-blue">Adreça</a> <a id="direccio"><sf:input
+				<a class="tag tag-blue">AdreÃ§a</a> <a id="direccio"><sf:input
 						name="direccio" path="direccio" type="text" /></a>
 			</div>
 			<div class="entrada-pista">
@@ -109,7 +109,7 @@
 
 		<div class="entrada-formulari">
 			<div class="entrada-nom">
-				<a class="tag tag-blue">Població</a> <a id="poblacio"><sf:input
+				<a class="tag tag-blue">PoblaciÃ³</a> <a id="poblacio"><sf:input
 						name="poblacio" path="poblacio" type="text" /></a>
 			</div>
 			<div class="entrada-pista">

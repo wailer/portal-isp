@@ -120,6 +120,6 @@ public class UserController {
 
 		usuariAModificar.setPassword(passwordModificat);
 		usersService.updatePassword(usuariAModificar);
-		return "admin-ok";
+		return "admin-usuaris";
 	}
 }
