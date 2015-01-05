@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tfc.uoc.edu.spring.web.dao.Missatge;
 import com.tfc.uoc.edu.spring.web.dao.Producte;
 import com.tfc.uoc.edu.spring.web.dao.User;
 import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PasswordEditFormValidationGroup;
@@ -137,7 +138,7 @@ public class AdminController {
 			// que conté la id de l'usuari per tal que el formulari sàpiga quin
 			// usuari estem editant.
 			usuariParametre.setPassword(null);
-			model.addAttribute("user", usuariParametre);
+			model.addAttribute("user", usuariParametre);			
 			return "admin-password";
 		}
 		return "errorpermisos";
@@ -175,6 +176,7 @@ public class AdminController {
 
 		List<User> usuaris = usersService.getUsers();
 		model.addAttribute("usuaris", usuaris);
+		model.addAttribute("missatge",new Missatge("Panell.operacio.ok",false));
 		return "admin-usuaris";
 	}
 	
@@ -183,7 +185,7 @@ public class AdminController {
 			@Validated(PasswordEditFormValidationGroup.class) User user,
 			BindingResult result, Model model) {
 
-		if (result.hasErrors()) {
+		if (result.hasErrors()) {			
 			return "admin-password";
 		}
 
@@ -212,6 +214,7 @@ public class AdminController {
 		usersService.updatePassword(usuariAModificar);
 		List<User> usuaris = usersService.getUsers();
 		model.addAttribute("usuaris", usuaris);
+		model.addAttribute("missatge",new Missatge("Panell.operacio.ok",false));
 		return "admin-usuaris";
 	}
 }

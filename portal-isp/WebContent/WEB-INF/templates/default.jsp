@@ -38,6 +38,9 @@
 	<div class="nav">
 		<tiles:insertAttribute name="nav"></tiles:insertAttribute>
 	</div>
+		<div class="missatges">
+		<tiles:insertAttribute name="missatges"></tiles:insertAttribute>
+	</div>	
 	<div class="content">
 		<tiles:insertAttribute name="content"></tiles:insertAttribute>
 	</div>
