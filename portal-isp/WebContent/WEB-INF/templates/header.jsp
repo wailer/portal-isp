@@ -6,16 +6,20 @@
 
 <div class="header-row">
 
-		<a class="header-logo" tabindex="-1" href="<c:url value='/'/>">ACME Hosting</a>
+	<a class="header-logo" tabindex="-1" href="<c:url value='/'/>">ACME
+		Hosting</a>
 	<div class="header-right">
-		<div id="loginmenu" class="button-group">			
+		<sec:authorize access="isAuthenticated()">
+			<a class="salutacio">Hola <sec:authentication
+					property="principal.username" />,
+			</a>
+		</sec:authorize>
+		<div id="loginmenu" class="button-group">
 			<sec:authorize access="!isAuthenticated()">
-				<a class="button button-green"
-					href="<c:url value='/login'/>">Login</a>
+				<a class="button button-green" href="<c:url value='/login'/>">Login</a>
 			</sec:authorize>
 			<sec:authorize access="!isAuthenticated()">
-				<a class="button button-blue"
-					href="<c:url value='/usuari'/>">Registre</a>
+				<a class="button button-blue" href="<c:url value='/usuari'/>">Registre</a>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<a class="button button-red"
@@ -27,9 +31,9 @@
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
 				<a class="button button-purple" href="<c:url value='/admin'/>">Administració</a>
-			</sec:authorize>			
+			</sec:authorize>
 		</div>
-	
+
 	</div>
 
 </div>

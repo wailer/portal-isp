@@ -19,9 +19,8 @@ public class UsersService {
 		this.usersDao = usersDao;
 	}
 	
-	public void create(User user) {
-		usersDao.create(user);
-		
+	public void saveOrUpdate(User user, boolean updatePassword) {
+		usersDao.saveOrUpdate(user, updatePassword);		
 	}
 
 	public boolean exists(String username) {
@@ -30,6 +29,28 @@ public class UsersService {
 
 	public List<User> getUsers() {
 		return usersDao.getAllUsers();
+	}
+
+	public User getUser(String username) {
+		return usersDao.getUser(username);
+		
+	}
+
+	public void save(User user) {
+		usersDao.save(user);
+		
+	}
+
+	public void update(User user) {
+		usersDao.update(user,false);		
+	}
+
+	public void updatePassword(User user) {
+		usersDao.update(user,true);
+	}
+
+	public User getUser(int id) {
+		return usersDao.getUser(id);		
 	}
 
 

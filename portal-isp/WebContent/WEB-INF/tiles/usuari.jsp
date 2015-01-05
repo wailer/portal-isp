@@ -11,7 +11,9 @@
 	<sf:form method="post"
 		action="${pageContext.request.contextPath}/crearusuari"
 		commandName="user">
-
+		
+		<sf:hidden path="id"/>
+		
 		<div class="entrada-formulari">
 			<div class="entrada-nom">
 				<a class="tag tag-blue">Usuari</a> <a id="username"><sf:input

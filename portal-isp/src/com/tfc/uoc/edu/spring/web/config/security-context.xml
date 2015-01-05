@@ -11,7 +11,7 @@
 			<security:jdbc-user-service
 				data-source-ref="dataSource"
 				authorities-by-username-query='select username, authority from users where binary username = ?'
-				users-by-username-query='select username, password, actiu from users where binary username = ?'
+				users-by-username-query='select username, password, enabled from users where binary username = ?'
 				id="jdbcUserService" />
 			<security:password-encoder hash="sha-256"
 				ref="passwordEncoder">
@@ -29,6 +29,10 @@
 			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/admin-usuaris"
 			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin-usuari"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin-password"
+			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/client"
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/client-dominis"
@@ -42,6 +46,8 @@
 		<security:intercept-url pattern="/producteeliminat"
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/docrearproducte"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/modificar-password"
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/productes"
@@ -69,6 +75,8 @@
 		<security:intercept-url pattern="/test-flow"
 			access="permitAll" />
 		<security:intercept-url pattern="/credits"
+			access="permitAll" />
+		<security:intercept-url pattern="/modificar-usuari"
 			access="permitAll" />
 		<security:intercept-url pattern="/**" access="denyAll" />
 		<security:form-login login-page="/login"

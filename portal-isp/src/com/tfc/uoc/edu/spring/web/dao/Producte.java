@@ -13,6 +13,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.FormValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PersistenceValidationGroup;
+
 @Entity
 @Table(name = "productes")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
