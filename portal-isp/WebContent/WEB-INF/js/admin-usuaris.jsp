@@ -22,7 +22,7 @@
 			    },
 			    create:function () {
 			        $(".ui-button").addClass("button");
-			        $(".ui-button-text:contains(Close)").text("X");
+			        $(".ui-button-text:contains(Close)").text("X");			      
 			     
 			    }
 			});
