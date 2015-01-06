@@ -145,8 +145,13 @@ div#passwordMatch {
 
 .taulaLogin {
 	text-align: left;
+	
 }
 
 div#confirmar {	
-		display: none
+		display: none;
+		z-index: 9020;		
+}
+.ui-dialog {
+	z-index: 9020;
 }
