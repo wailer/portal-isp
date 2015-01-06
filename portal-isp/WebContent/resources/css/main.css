@@ -1225,3 +1225,23 @@ a.button {
 	height: 32px;
 	width: 32px;	
 }
+
+.icon16 {
+	height: 16px;
+	width: 16px;	
+}
+
+.icon24 {
+	height: 24px;
+	width: 24px;	
+}
+
+.icon12 {
+	height: 12px;
+	width: 12px;	
+}
+
+.icon8 {
+	height: 8px;
+	width: 8px;	
+}

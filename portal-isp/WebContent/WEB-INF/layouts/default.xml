@@ -124,6 +124,7 @@
 
 	<definition name="admin-usuaris" extends='admin.base'>
 		<put-attribute name="title" value="Admin"></put-attribute>
+		<put-attribute name="includes" value="/WEB-INF/js/admin-usuaris.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/admin/usuaris.jsp"></put-attribute>
 	</definition>
 	

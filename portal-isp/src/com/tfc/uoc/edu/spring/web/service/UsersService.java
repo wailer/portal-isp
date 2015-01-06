@@ -53,5 +53,9 @@ public class UsersService {
 		return usersDao.getUser(id);		
 	}
 
+	public void delete(int id) {
+		usersDao.delete(id);		
+	}
+
 
 }
