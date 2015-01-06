@@ -69,54 +69,5 @@ public class UserController {
 		return "usuaricreat";
 	}
 
-	@RequestMapping(value = "/modificar-usuari", method = RequestMethod.POST)
-	public String modificarUsuari(
-			@Validated(UserEditFormValidationGroup.class) User user,
-			BindingResult result) {
 
-		if (result.hasErrors()) {
-			return "usuari";
-		}
-
-		// Conservem el password actual
-		user.setPassword(usersService.getUser(user.getId()).getPassword());
-		usersService.update(user);
-
-		return "usuaricreat";
-	}
-
-	@RequestMapping(value = "/modificar-password", method = RequestMethod.POST)	
-	public String modificarPassword(
-			@Validated(PasswordEditFormValidationGroup.class) User user,
-			BindingResult result, Model model) {
-
-		if (result.hasErrors()) {
-			return "modificar-password";
-		}
-
-		// En aquest cas recuperem totes les dades de l'usuari a db i només
-		// sobrescribim el password introduït en el formulari
-		String passwordModificat = user.getPassword();
-		if (passwordModificat == null) {
-			logger.error("Modificar-Password >> El password és null");
-			return "error";
-		}		
-
-		int idUsuari = user.getId();
-		if (idUsuari <= 0) {
-			logger.error("Modificar-Password >> La id d'usuari no és vàlida: " + idUsuari);
-		}
-
-		User usuariAModificar = usersService.getUser(idUsuari);
-		if (usuariAModificar == null) {
-			logger.error("Modificar-Password >> No es detecta l'usuari a modificar: usuariAModificar");
-			logger.info("Modificar-Password >> Dades del formulari:"
-					+ user.toString());
-			return "error";
-		}
-
-		usuariAModificar.setPassword(passwordModificat);
-		usersService.updatePassword(usuariAModificar);
-		return "admin-usuaris";
-	}
 }

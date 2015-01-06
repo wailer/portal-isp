@@ -24,7 +24,8 @@
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/static/script/jquery-1.11.2.min.js"></script>
-
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/static/script/jquery-ui-1.11.2/jquery-ui.js"></script>
 
 <title><tiles:insertAttribute name="title">
 	</tiles:insertAttribute></title>

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -80,6 +81,14 @@ public class UsersDao {
 		criteria.add(Restrictions.eq("id", id));
 		User user  = (User)criteria.uniqueResult();
 		return user;
+	}
+
+	public void delete(int id) {
+		Query query = session()
+				.createQuery("delete from User where id=:id");
+		query.setLong("id", id);
+		query.executeUpdate();
+		
 	}
 
 

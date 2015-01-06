@@ -147,3 +147,6 @@ div#passwordMatch {
 	text-align: left;
 }
 
+div#confirmar {	
+		display: none
+}

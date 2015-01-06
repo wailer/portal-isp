@@ -20,3 +20,5 @@
 	</p>
 
 </c:if>
+
+<div class="alert" id="confirmar"><a>N'estàs segur ?</a></div>

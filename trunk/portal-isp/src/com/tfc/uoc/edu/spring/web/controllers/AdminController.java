@@ -69,7 +69,7 @@ public class AdminController {
 			@RequestParam(value = "username", required = false) String nomUsuari,
 			@RequestParam(value = "action", required = false) String action) {
 
-		User usuari = null;
+
 
 		if (principal != null) {
 			String nomUsuariActual = principal.getName();
@@ -97,10 +97,23 @@ public class AdminController {
 
 			// Hem passat totes les comprovacions de seguretat, podem editar
 			// l'usuari.
-			model.addAttribute("user", usuariParametre);
-			return "admin-usuari";
+
+			if (action!= null && action.equals("delete")) {
+				model.addAttribute("user", usuariParametre);
+				usersService.delete(usuariParametre.getId());
+				model.addAttribute(model.addAttribute("missatge", new Missatge(
+						"Panell.operacio.ok", false)));
+				List<User> usuaris = usersService.getUsers();
+				model.addAttribute("usuaris", usuaris);
+				return "admin-usuaris";
+			} else {
+				model.addAttribute("user", usuariParametre);
+				return "admin-usuari";
+			}
 		}
-		return "errorpermisos";
+		model.addAttribute(model.addAttribute("missatge", new Missatge(
+				"Panell.operacio.ko", true)));
+		return "admin-usuaris";
 	}
 
 	@RequestMapping(value = "/admin-password", method = RequestMethod.GET)
@@ -138,7 +151,7 @@ public class AdminController {
 			// que conté la id de l'usuari per tal que el formulari sàpiga quin
 			// usuari estem editant.
 			usuariParametre.setPassword(null);
-			model.addAttribute("user", usuariParametre);			
+			model.addAttribute("user", usuariParametre);
 			return "admin-password";
 		}
 		return "errorpermisos";
@@ -163,7 +176,7 @@ public class AdminController {
 
 	@RequestMapping(value = "/admin-modificar-usuari", method = RequestMethod.POST)
 	public String modificarUsuari(
-	@Validated(UserEditFormValidationGroup.class) User user,
+			@Validated(UserEditFormValidationGroup.class) User user,
 			BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
@@ -176,16 +189,17 @@ public class AdminController {
 
 		List<User> usuaris = usersService.getUsers();
 		model.addAttribute("usuaris", usuaris);
-		model.addAttribute("missatge",new Missatge("Panell.operacio.ok",false));
+		model.addAttribute("missatge",
+				new Missatge("Panell.operacio.ok", false));
 		return "admin-usuaris";
 	}
-	
-	@RequestMapping(value = "/admin-modificar-password", method = RequestMethod.POST)	
+
+	@RequestMapping(value = "/admin-modificar-password", method = RequestMethod.POST)
 	public String modificarPassword(
 			@Validated(PasswordEditFormValidationGroup.class) User user,
 			BindingResult result, Model model) {
 
-		if (result.hasErrors()) {			
+		if (result.hasErrors()) {
 			return "admin-password";
 		}
 
@@ -195,11 +209,12 @@ public class AdminController {
 		if (passwordModificat == null) {
 			logger.error("Admin-Modificar-Password >> El password és null");
 			return "error";
-		}		
+		}
 
 		int idUsuari = user.getId();
 		if (idUsuari <= 0) {
-			logger.error("Admin-Modificar-Password >> La id d'usuari no és vàlida: " + idUsuari);
+			logger.error("Admin-Modificar-Password >> La id d'usuari no és vàlida: "
+					+ idUsuari);
 		}
 
 		User usuariAModificar = usersService.getUser(idUsuari);
@@ -214,7 +229,10 @@ public class AdminController {
 		usersService.updatePassword(usuariAModificar);
 		List<User> usuaris = usersService.getUsers();
 		model.addAttribute("usuaris", usuaris);
-		model.addAttribute("missatge",new Missatge("Panell.operacio.ok",false));
+		model.addAttribute("missatge",
+				new Missatge("Panell.operacio.ok", false));
 		return "admin-usuaris";
 	}
+	
+
 }

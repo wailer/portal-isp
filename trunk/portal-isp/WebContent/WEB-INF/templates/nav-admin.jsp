@@ -29,7 +29,7 @@
 		</sec:authorize>
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
 			<li class="nav"><a class="button"
-				href="<c:url value='/admin-usuaris'/>" title="Configuració">Configuració</a></li>
+				href="<c:url value='/admin-config'/>" title="Configuració">Configuració</a></li>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
 			<li class="nav"><a class="button"
