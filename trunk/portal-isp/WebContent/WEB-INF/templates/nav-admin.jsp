@@ -25,15 +25,15 @@
 		</sec:authorize>
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
 			<li class="nav"><a class="button"
-				href="<c:url value='/admin-usuaris'/>" title="Usuaris">Usuaris</a></li>
+				href="<c:url value='/admin-usuaris'/>" title="Usuaris"><img class="icon12" src="<c:url value="/static/icons/user15.png"/>"/> Usuaris</a></li>
 		</sec:authorize>
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
 			<li class="nav"><a class="button"
-				href="<c:url value='/admin-config'/>" title="Configuració">Configuració</a></li>
+				href="<c:url value='/admin-config'/>" title="Configuració"><img class="icon12" src="<c:url value="/static/icons/gear.png"/>"/> Configuració</a></li>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
 			<li class="nav"><a class="button"
-				href="<c:url value='/client-perfil'/>" title="perfil">Les meves dades</a></li>
+				href="<c:url value='/client-perfil'/>" title="perfil"><img class="icon12" src="<c:url value="/static/icons/user14.png"/>"/> Les meves dades</a></li>
 		</sec:authorize>
 	</ul>
 </div>

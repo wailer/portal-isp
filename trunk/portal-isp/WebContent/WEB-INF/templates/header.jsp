@@ -16,14 +16,14 @@
 		</sec:authorize>
 		<div id="loginmenu" class="button-group">
 			<sec:authorize access="!isAuthenticated()">
-				<a class="button button-green" href="<c:url value='/login'/>">Login</a>
+				<a class="button button-green" href="<c:url value='/login'/>"><img class="icon12" src="<c:url value="/static/icons/open15.png"/>"/> Login</a>
 			</sec:authorize>
 			<sec:authorize access="!isAuthenticated()">
-				<a class="button button-blue" href="<c:url value='/usuari'/>">Registre</a>
+				<a class="button button-blue" href="<c:url value='/usuari'/>"><img class="icon12" src="<c:url value="/static/icons/text2.png"/>"/> Registre</a>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<a class="button button-red"
-					href="<c:url value='/j_spring_security_logout'/>">Sortir</a>
+					href="<c:url value='/j_spring_security_logout'/>"><img class="icon12" src="<c:url value="/static/icons/lock5.png"/>"/> Sortir</a>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_USER')">
 				<a class="button button-purple " href="<c:url value='/client'/>">Àrea
