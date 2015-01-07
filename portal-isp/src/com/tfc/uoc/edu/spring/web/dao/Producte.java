@@ -1,20 +1,21 @@
 package com.tfc.uoc.edu.spring.web.dao;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.FormValidationGroup;
-import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PersistenceValidationGroup;
+import org.hibernate.validator.constraints.NotBlank;
+
+import com.tfc.uoc.edu.spring.web.dao.ValidationGroups.FormValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.ValidationGroups.PersistenceValidationGroup;
 
 @Entity
 @Table(name = "productes")
@@ -23,28 +24,30 @@ import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PersistenceValidation
 public abstract class Producte {
 
 	@Id
-	@GeneratedValue
-	private int id;
-
-	@NotNull
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;	
+	
+	@NotBlank
 	@Size(min = 2, max = 20, groups = { PersistenceValidationGroup.class,
 			FormValidationGroup.class })
+	@Column(name = "codi", unique = true)
 	private String codi;
 
-	@NotNull
+	@NotBlank
 	@Size(min = 2, groups = { PersistenceValidationGroup.class,
 			FormValidationGroup.class })
 	private String nom;
 
-	@NotNull
+	@NotBlank
 	@Size(max = 100, groups = { PersistenceValidationGroup.class,
 			FormValidationGroup.class })
 	private String descripcio;
 
-	@NotNull
+	@NotBlank
 	private float preu;
 	
-	@NotNull
+	@NotBlank
 	private boolean actiu;
 
 
@@ -61,6 +64,7 @@ public abstract class Producte {
 	}
 	
 	
+
 
 	@Override
 	public int hashCode() {

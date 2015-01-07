@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tfc.uoc.edu.spring.web.dao.Domini;
 import com.tfc.uoc.edu.spring.web.dao.Missatge;
 import com.tfc.uoc.edu.spring.web.dao.Producte;
 import com.tfc.uoc.edu.spring.web.dao.User;
-import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PasswordEditFormValidationGroup;
-import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.UserEditFormValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.ValidationGroups.FormValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.ValidationGroups.PasswordEditFormValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.ValidationGroups.UserEditFormValidationGroup;
 import com.tfc.uoc.edu.spring.web.service.ProductesService;
 import com.tfc.uoc.edu.spring.web.service.UsersService;
 
@@ -37,12 +38,72 @@ public class AdminController {
 		return "admin";
 	}
 
+	/**
+	 * Gestió Dominis
+	 * 
+	 * 
+	 * 
+	 */
+
 	@RequestMapping("/admin-dominis")
 	public String showAdminDominis(Model model, Principal principal) {
-		List<Producte> productes = productesService.getProductes(true);
-		model.addAttribute("productes", productes);
+		List<Domini> dominis = productesService.getDominis(true);
+		model.addAttribute("dominis", dominis);
 		return "admin-dominis";
 	}
+
+	@RequestMapping(value = "/admin-domini", method = RequestMethod.GET)
+	public String showAdminDomini(Model model, Principal principal,
+			@RequestParam(value = "codi", required = false) String codiDomini,
+			@RequestParam(value = "action", required = false) String action) {
+
+		Domini domini = new Domini();
+
+		if (codiDomini != null) {
+			domini = productesService.getDomini(codiDomini);
+
+			// Comprovacions de seguretat
+
+			// Hem passat totes les comprovacions de seguretat, podem editar
+			// el domini
+
+			if (action != null && action.equals("delete")) {
+				model.addAttribute("domini", domini);
+				productesService.delete(domini.getId());
+				model.addAttribute(model.addAttribute("missatge", new Missatge(
+						"Panell.operacio.ok", false)));
+				List<Domini> dominis = productesService.getDominis(true);
+				model.addAttribute("dominis", dominis);
+				return "admin-dominis";
+			} else {
+				logger.info("Admin-domini >> Editant un domini existent");
+				model.addAttribute("domini", domini);
+				return "admin-domini";
+			}
+		} else {
+			model.addAttribute("domini", domini);
+			return "admin-domini";
+		}
+
+	}
+
+	@RequestMapping(value = "/admin-form-domini", method = RequestMethod.POST)
+	public String crearDominii(
+			@Validated(FormValidationGroup.class) Domini domini,
+			BindingResult result, Model model) {
+
+		if (result.hasErrors()) {
+			return "admin-domini";
+		}
+
+		productesService.saveOrUpdate(domini);
+		List<Domini> dominis = productesService.getDominis(true);
+		model.addAttribute("dominis", dominis);
+		model.addAttribute(model.addAttribute("missatge", new Missatge(
+				"Panell.operacio.ok", false)));
+		return "admin-dominis";
+	}
+
 
 	@RequestMapping("/admin-allotjaments")
 	public String showAdminAllotjaments(Model model, Principal principal) {
@@ -68,8 +129,6 @@ public class AdminController {
 			Principal principal,
 			@RequestParam(value = "username", required = false) String nomUsuari,
 			@RequestParam(value = "action", required = false) String action) {
-
-
 
 		if (principal != null) {
 			String nomUsuariActual = principal.getName();
@@ -98,7 +157,7 @@ public class AdminController {
 			// Hem passat totes les comprovacions de seguretat, podem editar
 			// l'usuari.
 
-			if (action!= null && action.equals("delete")) {
+			if (action != null && action.equals("delete")) {
 				model.addAttribute("user", usuariParametre);
 				usersService.delete(usuariParametre.getId());
 				model.addAttribute(model.addAttribute("missatge", new Missatge(
@@ -233,6 +292,5 @@ public class AdminController {
 				new Missatge("Panell.operacio.ok", false));
 		return "admin-usuaris";
 	}
-	
 
 }

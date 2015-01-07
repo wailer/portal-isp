@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tfc.uoc.edu.spring.web.dao.Domini;
 import com.tfc.uoc.edu.spring.web.dao.Producte;
 import com.tfc.uoc.edu.spring.web.dao.User;
 import com.tfc.uoc.edu.spring.web.service.ProductesService;
@@ -43,6 +44,8 @@ public class HomeController {
 	@RequestMapping("/dominis")
 	public String showDominis(Model model, Principal principal) {	
 		logger.info("Showing dominis....");		
+		List<Domini> dominis = productesService.getDominis(false);
+		model.addAttribute("dominis", dominis);
 		return "dominis";
 	}
 	

@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tfc.uoc.edu.spring.web.dao.User;
-import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.FormValidationGroup;
-import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PasswordEditFormValidationGroup;
-import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.UserEditFormValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.ValidationGroups.FormValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.ValidationGroups.PasswordEditFormValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.ValidationGroups.UserEditFormValidationGroup;
 import com.tfc.uoc.edu.spring.web.service.UsersService;
 
 @Controller

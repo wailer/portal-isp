@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
+import com.tfc.uoc.edu.spring.web.dao.Domini;
 import com.tfc.uoc.edu.spring.web.dao.Producte;
 import com.tfc.uoc.edu.spring.web.dao.ProductesDao;
 
@@ -25,12 +26,6 @@ public class ProductesService {
 	}
 
 	@Secured("ROLE_ADMIN")
-	public void createProducte(Producte producte) {
-		productesDao.saveOrUpdate(producte);
-
-	}
-
-
 	public void saveOrUpdate(Producte producte) {
 		productesDao.saveOrUpdate(producte);		
 	}
@@ -38,5 +33,14 @@ public class ProductesService {
 	public void delete(int id) {
 		productesDao.delete(id);		
 	}
+
+	public List<Domini> getDominis(boolean inactius) {
+		return productesDao.getDominis(true);		
+	}
+
+	public Domini getDomini(String codiDomini) {
+		return productesDao.getDomini(codiDomini);
+	}
+
 
 }
