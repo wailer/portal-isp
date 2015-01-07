@@ -59,9 +59,7 @@ public class ProductesDao {
 		criteria.add(Restrictions.eq("actiu",true));		
 		return criteria.list();
 		}
-
 	}
-
 
 	public void saveOrUpdate(Producte producte) {
 		session().saveOrUpdate(producte);
@@ -74,7 +72,6 @@ public class ProductesDao {
 		return query.executeUpdate() == 1;
 	}
 
-
 	public Producte getProducte(String codi) {
 		Criteria criteria = session().createCriteria(Producte.class);		
 		criteria.add(Restrictions.eq("codi", codi));
@@ -85,6 +82,13 @@ public class ProductesDao {
 		Query query = session().createQuery("delete from Producte where codi=:codi");
 		query.setString("codi", codi);
 		query.executeUpdate();		
+	}
+
+	public Domini getDomini(String codi) {
+		Criteria criteria = session().createCriteria(Domini.class);
+		criteria.add(Restrictions.eq("codi", codi));
+		Domini domini  = (Domini)criteria.uniqueResult();
+		return domini;		
 	}
 
 

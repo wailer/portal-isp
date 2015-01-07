@@ -36,11 +36,11 @@
 			<property name="hibernateProperties">
 				<props>
 					<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-					<prop key="javax.persistence.validation.group.pre-persist">com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PersistenceValidationGroup
+					<prop key="javax.persistence.validation.group.pre-persist">com.tfc.uoc.edu.spring.web.dao.ValidationGroups.PersistenceValidationGroup
 					</prop>
-					<prop key="javax.persistence.validation.group.pre-update">com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PersistenceValidationGroup
+					<prop key="javax.persistence.validation.group.pre-update">com.tfc.uoc.edu.spring.web.dao.ValidationGroups.PersistenceValidationGroup
 					</prop>
-					<prop key="javax.persistence.validation.group.pre-remove">com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PersistenceValidationGroup
+					<prop key="javax.persistence.validation.group.pre-remove">com.tfc.uoc.edu.spring.web.dao.ValidationGroups.PersistenceValidationGroup
 					</prop>
 					<prop key="hibernate.hbm2ddl.auto">update</prop>
 				</props>

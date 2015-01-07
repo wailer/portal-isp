@@ -11,10 +11,10 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.FormValidationGroup;
-import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PasswordEditFormValidationGroup;
-import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.PersistenceValidationGroup;
-import com.tfc.uoc.edu.spring.web.dao.FormValidationGroups.UserEditFormValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.ValidationGroups.FormValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.ValidationGroups.PasswordEditFormValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.ValidationGroups.PersistenceValidationGroup;
+import com.tfc.uoc.edu.spring.web.dao.ValidationGroups.UserEditFormValidationGroup;
 import com.tfc.uoc.edu.spring.web.validation.ValidEmail;
 
 @Entity
