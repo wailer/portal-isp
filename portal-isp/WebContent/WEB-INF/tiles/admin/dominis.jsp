@@ -29,6 +29,7 @@
 				<td><c:out value="${domini.codi}"></c:out></td>
 				<td><c:out value="${domini.nom}"></c:out></td>
 				<td><c:out value="${domini.extensio}"></c:out></td>
+				<td><c:out value="${domini.descripcio}"></c:out></td>
 				<td><c:out value="${domini.preu}"></c:out></td>
 				<td><c:out value="${domini.actiu}"></c:out></td>
 				<td><a

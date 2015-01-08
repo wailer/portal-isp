@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tfc.uoc.edu.spring.web.dao.Allotjament;
 import com.tfc.uoc.edu.spring.web.dao.Domini;
 import com.tfc.uoc.edu.spring.web.dao.Producte;
 import com.tfc.uoc.edu.spring.web.dao.User;
@@ -50,7 +51,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/allotjaments")
-	public String showAllotjaments(Model model, Principal principal) {	
+	public String showAllotjaments(Model model, Principal principal) {
+		List<Allotjament> allotjaments = productesService.getAllotjaments(false);
+		model.addAttribute("allotjaments", allotjaments);
 		logger.info("Showing allotjaments....");
 		return "allotjaments";
 	}

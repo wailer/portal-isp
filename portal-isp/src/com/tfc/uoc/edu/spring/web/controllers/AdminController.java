@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tfc.uoc.edu.spring.web.dao.Allotjament;
 import com.tfc.uoc.edu.spring.web.dao.Domini;
 import com.tfc.uoc.edu.spring.web.dao.Missatge;
 import com.tfc.uoc.edu.spring.web.dao.Producte;
@@ -40,9 +41,7 @@ public class AdminController {
 
 	/**
 	 * Gestió Dominis
-	 * 
-	 * 
-	 * 
+	 *  
 	 */
 
 	@RequestMapping("/admin-dominis")
@@ -55,12 +54,10 @@ public class AdminController {
 	@RequestMapping(value = "/admin-domini", method = RequestMethod.GET)
 	public String showAdminDomini(Model model, Principal principal,
 			@RequestParam(value = "codi", required = false) String codiDomini,
-			@RequestParam(value = "action", required = false) String action) {
-
-		Domini domini = new Domini();
+			@RequestParam(value = "action", required = false) String action) {		
 
 		if (codiDomini != null) {
-			domini = productesService.getDomini(codiDomini);
+			Domini domini = productesService.getDomini(codiDomini);
 
 			// Comprovacions de seguretat
 
@@ -81,21 +78,23 @@ public class AdminController {
 				return "admin-domini";
 			}
 		} else {
+			logger.info("Admin-domini >> Creant nou domini... ");
+			Domini domini = new Domini();
 			model.addAttribute("domini", domini);
 			return "admin-domini";
 		}
-
 	}
 
 	@RequestMapping(value = "/admin-form-domini", method = RequestMethod.POST)
-	public String crearDominii(
+	public String formDomini(
 			@Validated(FormValidationGroup.class) Domini domini,
 			BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
 			return "admin-domini";
 		}
-
+		
+		logger.info("Admin-form-domini >> Domini editat: " + domini.toString());
 		productesService.saveOrUpdate(domini);
 		List<Domini> dominis = productesService.getDominis(true);
 		model.addAttribute("dominis", dominis);
@@ -103,14 +102,70 @@ public class AdminController {
 				"Panell.operacio.ok", false)));
 		return "admin-dominis";
 	}
-
+/**
+ * Gestió allotjaments
+ * 
+ */
 
 	@RequestMapping("/admin-allotjaments")
 	public String showAdminAllotjaments(Model model, Principal principal) {
-		List<Producte> productes = productesService.getProductes(true);
-		model.addAttribute("productes", productes);
+		List<Allotjament> allotjaments = productesService.getAllotjaments(true);
+		model.addAttribute("allotjaments", allotjaments);
 		return "admin-allotjaments";
 	}
+	
+	@RequestMapping(value = "/admin-allotjament", method = RequestMethod.GET)
+	public String showAdminAllotjament(Model model, Principal principal,
+			@RequestParam(value = "codi", required = false) String codi,
+			@RequestParam(value = "action", required = false) String action) {		
+
+		if (codi != null) {
+			Allotjament allotjament = productesService.getAllotjament(codi);
+
+			// Comprovacions de seguretat
+
+			// Hem passat totes les comprovacions de seguretat, podem editar
+			// el domini
+
+			if (action != null && action.equals("delete")) {
+				model.addAttribute("allotjament", allotjament);
+				productesService.delete(allotjament.getId());
+				model.addAttribute(model.addAttribute("missatge", new Missatge(
+						"Panell.operacio.ok", false)));
+				List<Allotjament> allotjaments = productesService.getAllotjaments(true);
+				model.addAttribute("allotjaments", allotjaments);
+				return "admin-allotjaments";
+			} else {
+				logger.info("Admin-allotjament >> Editant un allotjament existent");
+				model.addAttribute("allotjament", allotjament);
+				return "admin-allotjament";
+			}
+		} else {
+			logger.info("Admin-allotjament >> Creant nou allotjament... ");
+			Allotjament allotjament = new Allotjament();
+			model.addAttribute("allotjament", allotjament);
+			return "admin-allotjament";
+		}
+	}
+
+	@RequestMapping(value = "/admin-form-allotjament", method = RequestMethod.POST)
+	public String formAllotjament(
+			@Validated(FormValidationGroup.class) Allotjament allotjament,
+			BindingResult result, Model model) {
+
+		if (result.hasErrors()) {
+			return "admin-allotjament";
+		}
+		
+		logger.info("Admin-form-allotjament >> Allotjament editat: " + allotjament.toString());
+		productesService.saveOrUpdate(allotjament);
+		List<Allotjament> allotjaments = productesService.getAllotjaments(true);
+		model.addAttribute("allotjaments", allotjaments);
+		model.addAttribute(model.addAttribute("missatge", new Missatge(
+				"Panell.operacio.ok", false)));
+		return "admin-allotjaments";
+	}
+
 
 	@RequestMapping("/admin-usuaris")
 	public String showAdminUsuaris(Model model, Principal principal) {
@@ -232,6 +287,7 @@ public class AdminController {
 	public String showAdminError(Model model, Principal principal) {
 		return "admin-error";
 	}
+	
 
 	@RequestMapping(value = "/admin-modificar-usuari", method = RequestMethod.POST)
 	public String modificarUsuari(
@@ -244,6 +300,7 @@ public class AdminController {
 
 		// Conservem el password actual
 		user.setPassword(usersService.getUser(user.getId()).getPassword());
+		logger.info("Admin-modificar-usuari >> Usuari editat: "+ user.toString());
 		usersService.update(user);
 
 		List<User> usuaris = usersService.getUsers();

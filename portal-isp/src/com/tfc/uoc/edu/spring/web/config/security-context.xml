@@ -35,6 +35,14 @@
 			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/admin-allotjaments"
 			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin-allotjament"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin-form-allotjament"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin-modificar-allotjament"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin-eliminar-allotjament"
+			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/admin-usuaris"
 			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/admin-usuari"

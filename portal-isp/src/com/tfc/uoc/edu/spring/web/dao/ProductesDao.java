@@ -55,7 +55,7 @@ public class ProductesDao {
 			return session().createQuery("from Allotjament").list();
 		}
 		else {
-		Criteria criteria = session().createCriteria(Domini.class);
+		Criteria criteria = session().createCriteria(Allotjament.class);
 		criteria.add(Restrictions.eq("actiu",true));		
 		return criteria.list();
 		}
@@ -89,6 +89,18 @@ public class ProductesDao {
 		criteria.add(Restrictions.eq("codi", codi));
 		Domini domini  = (Domini)criteria.uniqueResult();
 		return domini;		
+	}
+
+	public void update(Domini domini) {
+		session().update(domini);
+		
+	}
+
+	public Allotjament getAllotjament(String codi) {
+		Criteria criteria = session().createCriteria(Allotjament.class);
+		criteria.add(Restrictions.eq("codi", codi));
+		Allotjament allotjament  = (Allotjament)criteria.uniqueResult();
+		return allotjament;
 	}
 
 

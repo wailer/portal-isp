@@ -113,6 +113,7 @@
 
 	<definition name="admin-dominis" extends='admin.base'>
 		<put-attribute name="title" value="Admin"></put-attribute>
+		<put-attribute name="includes" value="/WEB-INF/js/admin-dominis.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/admin/dominis.jsp"></put-attribute>
 	</definition>
 	
@@ -124,8 +125,15 @@
 
 	<definition name="admin-allotjaments" extends='admin.base'>
 		<put-attribute name="title" value="Admin"></put-attribute>
+		<put-attribute name="includes" value="/WEB-INF/js/admin-allotjaments.jsp"></put-attribute>
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/admin/allotjaments.jsp"></put-attribute>
+	</definition>
+	
+		<definition name="admin-allotjament" extends='admin.base'>
+		<put-attribute name="title" value="Admin"></put-attribute>
+		<put-attribute name="includes" value="/WEB-INF/js/form-admin-allotjament.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/admin/allotjament.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin-usuaris" extends='admin.base'>
