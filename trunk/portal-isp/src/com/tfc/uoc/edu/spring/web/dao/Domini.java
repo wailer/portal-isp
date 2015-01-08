@@ -20,10 +20,10 @@ public class Domini extends Producte {
 		this.extensio = extensio;
 	}
 	
+	
 	public Domini() {
 		super();
 	}
-
 
 	public String getExtensio() {
 		return extensio;
@@ -33,6 +33,22 @@ public class Domini extends Producte {
 		this.extensio = extensio;
 	}
 
+	@Override
+	public String toString() {
+		return "Domini [extensio=" + extensio + ", hashCode()=" + hashCode()
+				+ ", getCodi()=" + getCodi() + ", getPreu()=" + getPreu()
+				+ ", getId()=" + getId() + ", getDescripcio()="
+				+ getDescripcio() + ", getNom()=" + getNom() + ", isActiu()="
+				+ isActiu() + ", getClass()=" + getClass() + ", toString()="
+				+ super.toString() + "]";
+	}
+
+
+
+	
+
+
+	
 
 	
 

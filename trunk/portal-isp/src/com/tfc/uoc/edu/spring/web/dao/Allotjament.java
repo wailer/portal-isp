@@ -11,6 +11,9 @@ import javax.validation.constraints.NotNull;
 public class Allotjament extends Producte {
 
 	private String plantillaPlesk;
+	
+	@NotNull
+	private boolean destacat; // Si és cert, es destaca a la portada
 
 	@NotNull
 	private float espai; // Gb
@@ -65,5 +68,30 @@ public class Allotjament extends Producte {
 	public void setBusties(int busties) {
 		this.busties = busties;
 	}
+
+	
+	public boolean isDestacat() {
+		return destacat;
+	}
+
+	public void setDestacat(boolean destacat) {
+		this.destacat = destacat;
+	}
+
+	@Override
+	public String toString() {
+		return "Allotjament [plantillaPlesk=" + plantillaPlesk + ", espai="
+				+ espai + ", dominis=" + dominis + ", busties=" + busties
+				+ ", getPlantillaPlesk()=" + getPlantillaPlesk()
+				+ ", getEspai()=" + getEspai() + ", getDominis()="
+				+ getDominis() + ", getBusties()=" + getBusties()
+				+ ", hashCode()=" + hashCode() + ", getCodi()=" + getCodi()
+				+ ", getPreu()=" + getPreu() + ", getId()=" + getId()
+				+ ", getDescripcio()=" + getDescripcio() + ", getNom()="
+				+ getNom() + ", isActiu()=" + isActiu() + ", getClass()="
+				+ getClass() + ", toString()=" + super.toString() + "]";
+	}
+	
+	
 
 }

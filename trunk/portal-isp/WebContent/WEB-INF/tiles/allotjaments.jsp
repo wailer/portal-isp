@@ -1,50 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
 
-
 <div class="plans">
-<ul class ="plans">
-<li class = "plan">
-    <div class="plan">
-      <h3 class="plan-title">Personal</h3>
-      <p class="plan-price">150€<span class="plan-unit">any</span></p>
-      <ul class="plan-features">
-        <li class="plan-feature">1 <span class="plan-feature-name">domini</span></li>
-        <li class="plan-feature">5<span class="plan-feature-unit">GB</span> <span class="plan-feature-name">espai</span></li>
-        <li class="plan-feature">1<span class="plan-feature-name">bústia</span></li>
-      </ul>
-      <a href="#" class="plan-button">Comprar</a>
-    </div>
-    </li>
-<li class = "plan">
-    <div class="plan plan-highlight">
-      <p class="plan-recommended">Recommended</p>
-      <h3 class="plan-title">Professional</h3>
-      <p class="plan-price">300€ <span class="plan-unit">any</span></p>
-      <ul class="plan-features">
-        <li class="plan-feature">5 <span class="plan-feature-name">dominis</span></li>
-        <li class="plan-feature">20<span class="plan-feature-unit">GB</span> <span class="plan-feature-name">espai</span></li>
-        <li class="plan-feature">10 <span class="plan-feature-name">bústies</span></li>
-      </ul>
-      <a href="#" class="plan-button">Comprar</a>
-    </div>
-    </li>
-    <li class="plan">
-    <div class="plan">
-      <h3 class="plan-title">Reseller</h3>
-      <p class="plan-price">1000€ <span class="plan-unit">any</span></p>
-      <ul class="plan-features">
-        <li class="plan-feature">20 <span class="plan-feature-name">dominis</span></li>
-        <li class="plan-feature">100<span class="plan-feature-unit">GB</span> <span class="plan-feature-name">espai</span></li>
-        <li class="plan-feature">1000 <span class="plan-feature-name">bústies</span></li>
-      </ul>
-      <a href="#" class="plan-button">Comprar</a>
-    </div>
-    </li>
-</ul>
-  </div>
+	<ul class="plans">
+
+		<c:forEach var="allotjament" items="${allotjaments}">
+
+
+			<c:set var="estilPla" value="plan" />
+
+			<c:if test="${allotjament.destacat == true }">
+				<c:set var="estilPla" value="plan plan-highlight" />
+			</c:if>
+
+			<li class="plan">
+				<div class="${estilPla}">
+					<c:if test="${allotjament.destacat == true }">
+						<p class="plan-recommended">Recomanat!</p>
+					</c:if>
+					<h3 class="plan-title">
+						<c:out value="${allotjament.nom}" />
+					</h3>
+					<p class="plan-price">
+						<c:out value="${allotjament.preu}" />
+						� <span class="plan-unit">any</span>
+					</p>
+					<ul class="plan-features">
+						<li class="plan-feature"><c:out
+								value="${allotjament.dominis}" /> <span
+							class="plan-feature-name">dominis</span></li>
+						<li class="plan-feature"><c:out value="${allotjament.espai}" /><span
+							class="plan-feature-unit">GB</span> <span
+							class="plan-feature-name">espai</span></li>
+						<li class="plan-feature"><c:out
+								value="${allotjament.busties}" /><span
+							class="plan-feature-name"> b�sties</span></li>
+					</ul>
+					<a href="#" class="plan-button">Comprar</a>
+				</div>
+			</li>
+
+		</c:forEach>
+	</ul>
+</div>
 

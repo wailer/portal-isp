@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
+import com.tfc.uoc.edu.spring.web.dao.Allotjament;
 import com.tfc.uoc.edu.spring.web.dao.Domini;
 import com.tfc.uoc.edu.spring.web.dao.Producte;
 import com.tfc.uoc.edu.spring.web.dao.ProductesDao;
@@ -40,6 +41,19 @@ public class ProductesService {
 
 	public Domini getDomini(String codiDomini) {
 		return productesDao.getDomini(codiDomini);
+	}
+
+	public void update(Domini domini) {
+		productesDao.update(domini);
+		
+	}
+
+	public Allotjament getAllotjament(String codi) {
+		return productesDao.getAllotjament(codi);
+	}
+
+	public List<Allotjament> getAllotjaments(boolean inactius) {
+		return productesDao.getAllotjaments(inactius);
 	}
 
 

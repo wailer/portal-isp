@@ -26,6 +26,7 @@ public abstract class Producte {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
+	@NotBlank
 	private int id;	
 	
 	@NotBlank
@@ -63,9 +64,6 @@ public abstract class Producte {
 		this.actiu = actiu;
 	}
 	
-	
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -135,6 +133,10 @@ public abstract class Producte {
 
 	public void setActiu(boolean actiu) {
 		this.actiu = actiu;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
