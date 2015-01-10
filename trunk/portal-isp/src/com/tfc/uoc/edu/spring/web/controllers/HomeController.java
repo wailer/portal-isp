@@ -33,9 +33,7 @@ public class HomeController {
 		logger.info("Showing home....");	
 		
 		List<String> extensions = productesService.getExtensions();
-		model.addAttribute("extensions", extensions);	
-		model.addAttribute("jsonUrl", "http://freedomainapi.com?key=jc8l2uzf2r&domain=");
-		
+		model.addAttribute("extensions", extensions);		
 		return "home";
 	}
 	

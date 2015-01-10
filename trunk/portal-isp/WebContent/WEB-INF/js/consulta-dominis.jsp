@@ -6,21 +6,74 @@
 
 
 <script type="text/javascript">
+	function onLoad() {
+		$("a#comprovar")
+				.on(
+						"click",
+						function(e) {
 
-function onLoad() {
-	$("a#comprovar").on("click", function(e) {
-		e.preventDefault();
-		$(consultarDomini());
-	});
-}
+							var extensio = $("input[name='extensio']:checked")
+									.val();
+							if (extensio == "undefined") {
+								e.preventDefault();
+								alert("No has seleccionat cap extensió.");
+							} else if ($("input#domini").val().length == 0
+									|| (/^[a-zA-Z-]*$/.test($("input#domini")
+											.val()) == false)) {
+								e.preventDefault();
+								alert("El domini no és vàlid.");
+							} else {
 
+								var domini = $("input#domini").val();
 
-	function consultarDomini() {	
-		alert("<c:out value="${jsonUrl}"/>" + $("input#domini").val());
-	   $.getJSON("<c:out value="${jsonUrl}"/>" + $("input#domini").val() , function(data) {		  
-		   alert("Resultat: " + data.status + "Domini: " + data.domain + "Estat: " + data.availabley);		 
-	   });
-	  
+								$(iniciaCerca());
+								$(consultarDomini(domini, extensio));
+							}
+
+						});
+	}
+
+	function consultarDomini(domini, extensio) {
+		var url = "<c:url value="/rest"/>" + "/consultar-domini" + "/" + domini
+				+ "/" + extensio;
+
+		$.getJSON(url, function(data) {
+
+			$("div#consultant").hide();
+			$("div#resultat").show();
+
+			if (data.status == "error") {				
+				$("span#resultat").removeClass("domini-ok");
+				$("span#resultat").addClass("domini-error");
+				$("span#resultat").text(
+						"Ups! Sembla que el servidor no respon. Prova-ho d'aqui a uns minuts.");
+				
+			} else if (data.status == "success") {			
+				
+				if (data.available == true) {
+					$("span#resultat").removeClass("domini-error");
+					$("span#resultat").addClass("domini-ok");
+					$("span#resultat").text(
+							"Fantàstic! El domini " + domini + "." + extensio
+									+ " està disponible.");
+
+				} else if (data.available == false) {
+					$("span#resultat").removeClass("domini-ok");
+					$("span#resultat").addClass("domini-error");
+					$("span#resultat").text(
+							"Llàstima! El domini " + domini + "." + extensio
+									+ " no està disponible.");
+
+				}
+			}
+		});
+
+	}
+
+	function iniciaCerca() {
+		$("div#resultat").hide();	
+		$("div#consultant").show();
+		
 	}
 
 	$(document).ready(onLoad);

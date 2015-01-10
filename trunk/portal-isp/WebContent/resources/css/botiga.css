@@ -157,3 +157,83 @@ div.cerca-domini {
 a#comprovar {
 	display: inline-block;
 }
+
+div#wrapperResultat {
+	
+}
+
+div#resultat {
+	display: none;
+}
+
+div#consultant {	
+	display: none;
+	margin: auto;
+	width: 220px;
+	height: 19px;
+	background-image: url("../images/ajax-loader.gif");
+	background-repeat: no-repeat;
+	
+}
+
+.domini-error {	
+	left: 100%;
+	margin: 0 0 0 8px;
+	padding: 4px 8px 5px;
+	min-width: 140px;
+	line-height: 18px;
+	font-size: 11px;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.8);
+	background: #33373c;
+	background-clip: padding-box;
+	border: 1px solid #111;
+	border-bottom-color: black;
+	border-radius: 3px;
+	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.07),
+		rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.2));
+	background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.07),
+		rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.2));
+	background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.07),
+		rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.2));
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.07),
+		rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.2));
+	-webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px
+		rgba(0, 0, 0, 0.15);
+	box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px
+		rgba(0, 0, 0, 0.15);
+	border-right-color: #8d2e2b;
+	background-color: #8d2e2b;
+}
+
+
+
+
+.domini-ok {	
+	left: 100%;
+	margin: 0 0 0 8px;
+	padding: 4px 8px 5px;
+	min-width: 140px;
+	line-height: 18px;
+	font-size: 11px;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.8);
+	background: #33373c;
+	background-clip: padding-box;
+	border: 1px solid #111;
+	border-bottom-color: black;
+	border-radius: 3px;
+	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.07),
+		rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.2));
+	background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.07),
+		rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.2));
+	background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.07),
+		rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.2));
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.07),
+		rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.2));
+	-webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px
+		rgba(0, 0, 0, 0.15);
+	box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px
+		rgba(0, 0, 0, 0.15);
+	border-right-color: #396330;
+	background-color: #396330;
+}
+
