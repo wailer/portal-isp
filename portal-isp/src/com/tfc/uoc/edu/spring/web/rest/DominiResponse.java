@@ -31,4 +31,11 @@ public class DominiResponse extends RestResponse {
 		this.available = available;
 	}
 
+	@Override
+	public String toString() {
+		return "DominiResponse [status=" + status + ", domain=" + domain
+				+ ", available=" + available + "]";
+	}
+
+	
 }
