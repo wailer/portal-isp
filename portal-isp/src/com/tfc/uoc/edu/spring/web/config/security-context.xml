@@ -108,6 +108,8 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/credits"
 			access="permitAll" />
+		<security:intercept-url pattern="/rest/**"
+			access="permitAll" />
 		<security:intercept-url pattern="/home" access="permitAll" />
 		<security:intercept-url pattern="/**" access="denyAll" />
 		<security:form-login login-page="/login"

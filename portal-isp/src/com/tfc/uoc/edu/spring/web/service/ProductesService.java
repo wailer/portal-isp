@@ -1,5 +1,7 @@
 package com.tfc.uoc.edu.spring.web.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +56,18 @@ public class ProductesService {
 
 	public List<Allotjament> getAllotjaments(boolean inactius) {
 		return productesDao.getAllotjaments(inactius);
+	}
+
+	public List<String> getExtensions() {
+		List<Domini> dominis = productesDao.getDominis(false);
+		Iterator<Domini> itr = dominis.iterator();
+		
+		List<String> extensions = new ArrayList<String>();
+		while(itr.hasNext()) {
+			extensions.add(itr.next().getExtensio());		
+		}
+		
+		return extensions;		
 	}
 
 

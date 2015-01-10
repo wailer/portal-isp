@@ -142,3 +142,18 @@ li.plan {
 	background: #37bbe6;
 	border-radius: 0 0 4px 4px;
 }
+
+div.cerca-domini {
+	width: 300px;
+	margin: auto;
+}
+
+.extensions {
+	display: inline-block;
+	margin: 10px;
+	padding: 10px;
+}
+
+a#comprovar {
+	display: inline-block;
+}
