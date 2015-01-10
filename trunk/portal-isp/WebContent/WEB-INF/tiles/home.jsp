@@ -4,37 +4,30 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-<div class="plans">
-    <div class="plan">
-      <h3 class="plan-title">.com</h3>
-      <p class="plan-price">19€<span class="plan-unit">anual</span></p>
-      <ul class="plan-features">
-        
-      </ul>
-      <a href="#" class="plan-button">Comprar</a>
-    </div>
-    <div class="plan">      
-      <h3 class="plan-title">.cat</h3>
-      <p class="plan-price">49€<span class="plan-unit">anual</span></p>
-      <ul class="plan-features">
-        
-      </ul>
-      <a href="#" class="plan-button">Comprar</a>
-    </div>
-    <div class="plan">
-      <h3 class="plan-title">.es</h3>
-      <p class="plan-price">15€<span class="plan-unit">anual</span></p>
-      <ul class="plan-features">
-        
-      </ul>
-      <a href="#" class="plan-button">Comprar</a>
-    </div>
-    <div class="plan">
-      <h3 class="plan-title">.net</h3>
-      <p class="plan-price">9€<span class="plan-unit">anual</span></p>
-      <ul class="plan-features">
-        
-      </ul>
-      <a href="#" class="plan-button">Comprar</a>
-    </div>
-  </div>
+<div class="home">
+	<div class="cerca-domini">
+
+		<p class="search">
+			<input id="domini" type="search"></input><a id="comprovar" class="button button-blue" href="#">Comprovar</a>
+		</p>
+
+	</div>
+	<div class="llista-extensions">
+
+		<ul class="extensions">
+			<c:forEach var="extensio" items="${extensions}">
+				<li class="extensions">.<c:out
+								value="${extensio}" /><label class="option"> <input
+						type="checkbox" id="<c:out
+								value="${extensio}" />"
+						value="<c:out
+								value="${extensio}" />"></input> <a
+						class="checkbox blue"></a>
+
+				</label></li>
+
+			</c:forEach>
+		</ul>
+	</div>
+
+</div>

@@ -1,9 +1,6 @@
 package com.tfc.uoc.edu.spring.web.controllers;
 
 
-
-
-
 import java.security.Principal;
 import java.util.List;
 
@@ -32,13 +29,13 @@ public class HomeController {
 	private UsersService usersService;
 	
 	@RequestMapping(value={"/","/home"})	
-	public String showHome(Model model, Principal principal) {	
-		logger.info("Showing home....");
-		List<Producte> productes = productesService.getProductes(false);
-		model.addAttribute("productes", productes);
-		boolean hasProductes = false;
+	public String showHome(Model model, Principal principal) {		
+		logger.info("Showing home....");	
 		
-
+		List<String> extensions = productesService.getExtensions();
+		model.addAttribute("extensions", extensions);	
+		model.addAttribute("jsonUrl", "http://freedomainapi.com?key=jc8l2uzf2r&domain=");
+		
 		return "home";
 	}
 	

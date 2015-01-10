@@ -20,6 +20,7 @@
     <servlet-name>portal</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+
   <description>MySQL Test App</description>
   <resource-ref>
     <description>DB Connection</description>
