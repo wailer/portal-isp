@@ -70,5 +70,9 @@ public class ProductesService {
 		return extensions;		
 	}
 
+	public Producte getProducte(String codi) {
+		return productesDao.getProducte(codi);
+	}
+
 
 }

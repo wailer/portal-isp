@@ -40,7 +40,12 @@
 								value="${allotjament.busties}" /><span
 							class="plan-feature-name"> bústies</span></li>
 					</ul>
-					<a href="#" class="plan-button">Comprar</a>
+					<sec:authorize access="isAuthenticated()">
+					<a href="<c:url value='/afegir-cistella?codi=${allotjament.codi}'/>" class="plan-button">Comprar</a>
+					</sec:authorize>
+					<sec:authorize access="!isAuthenticated()">
+					<a href="<c:url value='/afegir-cistella?codi=${allotjament.codi}'/>" class="plan-button-nologin">Inicia sessió per comprar aquest producte</a>
+					</sec:authorize>
 				</div>
 			</li>
 

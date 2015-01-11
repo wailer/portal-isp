@@ -72,6 +72,15 @@ public class ServeisDao {
 		criteria.add(Restrictions.eq("estat",estat));		
 		return criteria.list();			
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<Servei> getServeis(User user, String estat) {
+		Criteria criteria = session().createCriteria(Servei.class);
+		criteria.add(Restrictions.eq("estat",estat));
+		criteria.add(Restrictions.eq("user",user));		
+		return criteria.list();			
+	}
+
 	
 	
 	

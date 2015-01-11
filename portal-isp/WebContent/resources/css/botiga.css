@@ -67,6 +67,7 @@ li.plan {
 	padding: 15px 0 0 15px;
 	border-top: 1px solid #e5ded6;
 	text-align: left;
+	color: #333;
 }
 
 .plan-feature {
@@ -125,6 +126,27 @@ li.plan {
 .plan-highlight .plan-button {
 	font-size: 18px;
 	line-height: 49px;
+	background: #37bce5;
+	border-color: #3996b3;
+	border-color: rgba(0, 0, 0, 0.15);
+}
+
+.plan-button-nologin {
+	position: relative;
+	display: block;	
+	font-size: 12px;
+	font-weight: 500;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+	background: #fd935c;
+	border-bottom: 2px solid #cf7e3b;
+	border-color: rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+}
+
+.plan-highlight .plan-button-nologin {
 	background: #37bce5;
 	border-color: #3996b3;
 	border-color: rgba(0, 0, 0, 0.15);
@@ -237,3 +259,19 @@ div#consultant {
 	background-color: #396330;
 }
 
+div#cistella {
+	display: inline;
+	float: right;	
+	margin: 10px;
+}
+
+img#cistella {	
+	width: 50px;
+	height: 50px;
+}
+
+div#comprar {
+	display: none;
+	margin: auto;
+	max-width: 150px;
+}

@@ -53,6 +53,7 @@
 
 	<definition name="dominis" extends='portal.base'>
 		<put-attribute name="title" value="Dominis"></put-attribute>
+		<put-attribute name="includes" value="/WEB-INF/js/consulta-dominis.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/dominis.jsp"></put-attribute>
 	</definition>
 
@@ -65,6 +66,13 @@
 		<put-attribute name="title" value="Credits"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/credits.jsp"></put-attribute>
 	</definition>
+
+	<definition name="cistella" extends='portal.base'>
+		<put-attribute name="includes" value="/WEB-INF/js/cistella.jsp"></put-attribute>
+		<put-attribute name="title" value="Cistella"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/cistella.jsp"></put-attribute>
+	</definition>
+
 
 <!-- ERRORS -->
 

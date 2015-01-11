@@ -55,6 +55,10 @@
 			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/admin-password"
 			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/afegir-cistella"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/cistella"
+			access="isAuthenticated()" />
 		<security:intercept-url pattern="/client"
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/client-dominis"
