@@ -1,5 +1,6 @@
 package com.tfc.uoc.edu.spring.web.dao;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -86,7 +87,7 @@ public class User {
 	private String poblacio;
 
 	private String empresa;
-
+	
 	public User() {
 
 	}
