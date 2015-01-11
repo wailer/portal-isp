@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name="serveis")
-public class Servei {
+public abstract class Servei {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
