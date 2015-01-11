@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
+import com.tfc.uoc.edu.spring.web.dao.Allotjament;
+import com.tfc.uoc.edu.spring.web.dao.Domini;
 import com.tfc.uoc.edu.spring.web.dao.Servei;
 import com.tfc.uoc.edu.spring.web.dao.ServeiAllotjament;
 import com.tfc.uoc.edu.spring.web.dao.ServeiDomini;
 import com.tfc.uoc.edu.spring.web.dao.Producte;
 import com.tfc.uoc.edu.spring.web.dao.ServeisDao;
+import com.tfc.uoc.edu.spring.web.dao.User;
 
 @Service("serveisService")
 public class ServeisService {
@@ -28,17 +31,16 @@ public class ServeisService {
 		return serveisDao.getServeis(estat);
 	}
 
-	
 	public void saveOrUpdate(Servei servei) {
-		serveisDao.saveOrUpdate(servei);		
+		serveisDao.saveOrUpdate(servei);
 	}
 
 	public void delete(int id) {
-		serveisDao.delete(id);		
+		serveisDao.delete(id);
 	}
 
 	public List<ServeiDomini> getServeisDomini(String estat) {
-		return serveisDao.getServeisDomini(estat);		
+		return serveisDao.getServeisDomini(estat);
 	}
 
 	public ServeiDomini getServeiDomini(int id) {
@@ -47,7 +49,7 @@ public class ServeisService {
 
 	public void update(ServeiDomini serveiDomini) {
 		serveisDao.update(serveiDomini);
-		
+
 	}
 
 	public ServeiAllotjament getServeiAllotjament(int id) {
@@ -57,5 +59,17 @@ public class ServeisService {
 	public List<ServeiAllotjament> getServeisAllotjament(String estat) {
 		return serveisDao.getServeisAllotjament(estat);
 	}
-	
+
+	public List<Servei> getServeis(User user, String estat) {
+		return serveisDao.getServeis(user,estat);
+	}
+
+	public void eliminar(int id) {
+		serveisDao.delete(id);
+		
+	}
+
+
+
+
 }

@@ -11,7 +11,6 @@
 				.on(
 						"click",
 						function(e) {
-
 							var extensio = $("input[name='extensio']:checked")
 									.val();
 							if (extensio == "undefined") {
@@ -23,13 +22,10 @@
 								e.preventDefault();
 								alert("El domini no és vàlid.");
 							} else {
-
 								var domini = $("input#domini").val();
-
 								$(iniciaCerca());
 								$(consultarDomini(domini, extensio));
 							}
-
 						});
 	}
 
@@ -52,11 +48,15 @@
 			} else if (data.status == "success") {			
 				
 				if (data.available == true) {
+					$("div#comprar").show();
 					$("span#resultat").removeClass("domini-error");
 					$("span#resultat").addClass("domini-ok");
 					$("span#resultat").text(
 							"Fantàstic! El domini " + domini + "." + extensio
 									+ " està disponible.");
+					
+					var codi =  $("input[name='extensio']:checked").data("codi");					
+					$("a#comprar-domini").attr("href", "<c:url value='/afegir-cistella?codi='/>" + codi + "&nom=" + domini );
 
 				} else if (data.available == false) {
 					$("span#resultat").removeClass("domini-ok");
@@ -72,10 +72,10 @@
 	}
 
 	function iniciaCerca() {
+		$("div#comprar").hide();
 		$("div#resultat").hide();	
 		$("span#resultat").hide();
-		$("div#consultant").show();
-		
+		$("div#consultant").show();		
 	}
 
 	$(document).ready(onLoad);

@@ -3,7 +3,7 @@ package com.tfc.uoc.edu.spring.web.dao;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "serveis")
@@ -11,8 +11,6 @@ import javax.validation.constraints.NotNull;
 public class ServeiDomini extends Servei {
 	
 
-
-	@NotNull
 	private String nom;    //nom del domini sense el tld
 	
 	public ServeiDomini(String nom,Domini domini,User user) {
