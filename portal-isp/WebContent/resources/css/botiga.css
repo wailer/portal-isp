@@ -169,9 +169,9 @@ div#resultat {
 div#consultant {	
 	display: none;
 	margin: auto;
-	width: 220px;
-	height: 19px;
-	background-image: url("../images/ajax-loader.gif");
+	width: 32px;
+	height: 32px;
+	background-image: url("../images/ajax-loader.png");
 	background-repeat: no-repeat;
 	
 }

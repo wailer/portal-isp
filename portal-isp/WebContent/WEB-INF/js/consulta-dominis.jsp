@@ -41,6 +41,7 @@
 
 			$("div#consultant").hide();
 			$("div#resultat").show();
+			$("span#resultat").show();
 
 			if (data.status == "error") {				
 				$("span#resultat").removeClass("domini-ok");
@@ -72,6 +73,7 @@
 
 	function iniciaCerca() {
 		$("div#resultat").hide();	
+		$("span#resultat").hide();
 		$("div#consultant").show();
 		
 	}
